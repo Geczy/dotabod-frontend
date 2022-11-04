@@ -11,23 +11,23 @@ interface DashboardLayoutProps {
   children?: React.ReactNode
 }
 
-async function getUser() {
-  const session = await getSession(headers().get("cookie"))
+export async function getUser() {
+  const session = await getSession(headers().get("cookie"));
 
   if (!session?.user) {
-    return null
+    return null;
   }
 
-  return session.user
+  return session.user;
 }
 
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const user = await getUser()
+  const user = await getUser();
 
   if (!user) {
-    return notFound()
+    return notFound();
   }
 
   return (
@@ -35,7 +35,7 @@ export default async function DashboardLayout({
       <header className="flex h-[64px] items-center justify-between pl-2">
         <Link href="/" className="flex items-center space-x-2">
           <Icons.logo />
-          <span className="text-lg font-bold">Taxonomy</span>
+          <span className="text-lg font-bold">Dotabod</span>
         </Link>
         <UserAccountNav
           user={{
@@ -54,5 +54,5 @@ export default async function DashboardLayout({
         </main>
       </div>
     </div>
-  )
+  );
 }

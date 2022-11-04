@@ -21,7 +21,7 @@ export default function LoginPage() {
             <Icons.logo className="mx-auto h-6 w-6" />
             <h1 className="text-2xl font-bold">Welcome back</h1>
             <p className="text-sm text-slate-500">
-              Enter your email to sign in to your account
+              Sign in to your account with Twitch
             </p>
           </div>
           <UserAuthForm />
@@ -33,5 +33,5 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

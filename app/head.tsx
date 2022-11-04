@@ -1,7 +1,7 @@
 export default function Head() {
   return (
     <>
-      <title>Taxonomy</title>
+      <title>Dotabod</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width" />
       <meta
@@ -9,5 +9,5 @@ export default function Head() {
         content="An open source application built using the new router, server components and everything new in Next.js 13."
       />
     </>
-  )
+  );
 }

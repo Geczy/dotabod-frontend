@@ -2,13 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ["static-cdn.jtvnw.net"],
   },
   experimental: {
     appDir: true,
     newNextLinkBehavior: true,
     serverComponentsExternalPackages: ["prisma"],
   },
-}
+};
 
 module.exports = nextConfig
