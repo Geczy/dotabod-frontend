@@ -1,6 +1,13 @@
 {
-  "extends": "next/core-web-vitals",
+  "plugins": [
+    "prettier"
+  ],
+  "extends": [
+    "next/core-web-vitals",
+    "prettier"
+  ],
   "rules": {
-    "@next/next/no-head-element": "off"
+    "@next/next/no-head-element": "off",
+    "prettier/prettier": "error"
   }
 }
