@@ -1,6 +1,6 @@
-import { getCurrentUser } from "@/lib/session"
-import { DashboardHeader } from "@/components/dashboard-header"
-import { DashboardShell } from "@/components/dashboard-shell"
+import { getCurrentUser } from '@/lib/session'
+import { DashboardHeader } from '@/components/dashboard-header'
+import { DashboardShell } from '@/components/dashboard-shell'
 import { UserNameForm } from '@/components/user-name-form'
 import { Suspense } from 'react'
 

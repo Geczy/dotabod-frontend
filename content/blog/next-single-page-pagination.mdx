@@ -1,7 +1,7 @@
 ---
 title: Single-page Pagination in Next.js
 excerpt: Implement pagination with route parameters and rewrites.
-date: "2023-04-09"
+date: '2023-04-09'
 ---
 
 Let's say:
@@ -38,13 +38,11 @@ export async function getStaticPaths(context): Promise<GetStaticPathsResult> {
 
   return {
     paths,
-    fallback: "false",
+    fallback: 'false',
   }
 }
 
-export async function getStaticProps(
-  context
-): Promise<GetStaticPropsResult<BlogPageProps>> {
+export async function getStaticProps(context): Promise<GetStaticPropsResult<BlogPageProps>> {
   // Call your API and get the posts for the current page.
   const posts = await getPostsFromAPI({
     limit: 10,
@@ -74,8 +72,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: "/blog",
-        destination: "/blog/0",
+        source: '/blog',
+        destination: '/blog/0',
       },
     ]
   },

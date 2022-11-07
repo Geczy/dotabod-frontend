@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
-import { User } from "next-auth"
-import { signOut } from "next-auth/react"
-import Link from "next/link"
+import { User } from 'next-auth'
+import { signOut } from 'next-auth/react'
+import Link from 'next/link'
 
-import { DropdownMenu } from "@/ui/dropdown"
-import { UserAvatar } from "@/components/user-avatar"
+import { DropdownMenu } from '@/ui/dropdown'
+import { UserAvatar } from '@/components/user-avatar'
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
-  user: Pick<User, "name" | "image" | "email">
+  user: Pick<User, 'name' | 'image' | 'email'>
 }
 
 export function UserAccountNav({ user }: UserAccountNavProps) {
@@ -23,9 +23,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             <div className="flex flex-col space-y-1 leading-none">
               {user.name && <p className="font-medium">{user.name}</p>}
               {user.email && (
-                <p className="w-[200px] truncate text-sm text-slate-600">
-                  {user.email}
-                </p>
+                <p className="w-[200px] truncate text-sm text-slate-600">{user.email}</p>
               )}
             </div>
           </div>
@@ -42,11 +40,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           </DropdownMenu.Item>
           <DropdownMenu.Separator />
           <DropdownMenu.Item>
-            <Link
-              href="https://github.com/shadcn/taxonomy"
-              className="w-full"
-              target="_blank"
-            >
+            <Link href="https://github.com/shadcn/taxonomy" className="w-full" target="_blank">
               GitHub
             </Link>
           </DropdownMenu.Item>

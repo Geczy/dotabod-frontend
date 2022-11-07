@@ -1,6 +1,6 @@
 ---
 title: Next.js API Routes validation using Middlewares and Yup
-date: "2023-01-08"
+date: '2023-01-08'
 ---
 
 ## Middlewares
@@ -10,12 +10,12 @@ date: "2023-01-08"
 Let's start with a simple middleware to validate `request.method`.
 
 ```ts
-import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
+import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 export function withMethods(methods: string[], handler: NextApiHandler) {
   return async function (request: NextApiRequest, response: NextApiResponse) {
     if (!methods.includes(request.method)) {
-      return response.status(405).json("")
+      return response.status(405).json('')
     }
 
     return handler(request, response)
@@ -28,7 +28,7 @@ To use this middleware, we call our API handler by wrapping it inside `withMetho
 ```ts
 async function handler(request: NextApiRequest, response: NextApiResponse) {}
 
-export default withMethods(["POST"], handler)
+export default withMethods(['POST'], handler)
 ```
 
 ### withValidation
@@ -36,12 +36,12 @@ export default withMethods(["POST"], handler)
 Next, we're going to create a middleware to validate `request.body`
 
 ```ts
-import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
-import type { ObjectShape, OptionalObjectSchema } from "yup/lib/object"
+import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
+import type { ObjectShape, OptionalObjectSchema } from 'yup/lib/object'
 
 export function withValidation<T extends OptionalObjectSchema<ObjectShape>>(
   schema: T,
-  handler: NextApiHandler
+  handler: NextApiHandler,
 ) {
   return async function (request: NextApiRequest, response: NextApiResponse) {
     try {
@@ -53,7 +53,7 @@ export function withValidation<T extends OptionalObjectSchema<ObjectShape>>(
         return response.status(422).json(error.message)
       }
 
-      return response.status(422).json("")
+      return response.status(422).json('')
     }
   }
 }
@@ -63,8 +63,8 @@ This middleware accepts a schema to validate `request.body` against. We use it a
 
 ```ts
 const postSchema = yup.object({
-  title: yup.string().required("`Title` field missing."),
-  body: yup.string().required("`Body` field missing"),
+  title: yup.string().required('`Title` field missing.'),
+  body: yup.string().required('`Body` field missing'),
 })
 
 interface Post extends yup.TypeOf<typeof postSchema> {}
@@ -74,7 +74,7 @@ async function handler(request: NextApiRequest, response: NextApiResponse) {
 
   // TODO: Save post.
 
-  response.status(201).json("")
+  response.status(201).json('')
 }
 
 export default withValidation(postSchema, handler)
@@ -85,7 +85,7 @@ export default withValidation(postSchema, handler)
 We can call mutiple middlewares by chaining:
 
 ```ts title="pages/api/posts"
-export default withMethods(["POST"], withValidation(postSchema, handler))
+export default withMethods(['POST'], withValidation(postSchema, handler))
 ```
 
 ## Code

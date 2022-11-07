@@ -15,5 +15,5 @@ export default function Head() {
       <meta property="twitter:url" content="https://tx.shadcn.com" />
       <meta property="twitter:image" content="https://tx.shadcn.com/og.jpg" />
     </>
-  );
+  )
 }

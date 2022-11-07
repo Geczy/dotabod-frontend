@@ -1,11 +1,11 @@
-import TwitchProvider from "next-auth/providers/twitch";
-import { NextAuthOptions } from "next-auth";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import TwitchProvider from 'next-auth/providers/twitch'
+import { NextAuthOptions } from 'next-auth'
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
-import { PrismaClient } from "@/lib/prisma";
+import { PrismaClient } from '@/lib/prisma'
 import { db } from '@/lib/db'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 export const authOptions: NextAuthOptions = {
   // huh any! I know.
@@ -13,10 +13,10 @@ export const authOptions: NextAuthOptions = {
   // @see https://github.com/prisma/prisma/issues/16117
   adapter: PrismaAdapter(prisma as any),
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   pages: {
-    signIn: "/login",
+    signIn: '/login',
   },
   providers: [
     TwitchProvider({
@@ -27,24 +27,24 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ token, session }) {
       if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
+        session.user.id = token.id
+        session.user.name = token.name
+        session.user.email = token.email
+        session.user.image = token.picture
       }
 
-      return session;
+      return session
     },
     async jwt({ token, user }) {
       const dbUser = await db.user.findFirst({
         where: {
           email: token.email,
         },
-      });
+      })
 
       if (!dbUser) {
-        token.id = user.id;
-        return token;
+        token.id = user.id
+        return token
       }
 
       return {
@@ -52,7 +52,7 @@ export const authOptions: NextAuthOptions = {
         name: dbUser.name,
         email: dbUser.email,
         picture: dbUser.image,
-      };
+      }
     },
   },
-};
+}

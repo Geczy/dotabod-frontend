@@ -1,8 +1,8 @@
-import "styles/globals.css"
+import 'styles/globals.css'
 
-import { Toaster } from "@/ui/toast"
-import { Help } from "@/components/help"
-import { Analytics } from "@/components/analytics"
+import { Toaster } from '@/ui/toast'
+import { Help } from '@/components/help'
+import { Analytics } from '@/components/analytics'
 
 interface RootLayoutProps {
   children: React.ReactNode

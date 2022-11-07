@@ -1,13 +1,13 @@
-import { db } from "@/lib/db"
-import { getCurrentUser } from "@/lib/session"
-import { User } from "@/lib/prisma"
-import { DashboardHeader } from "@/components/dashboard-header"
-import { PostCreateButton } from "@/components/post-create-button"
-import { DashboardShell } from "@/components/dashboard-shell"
-import { PostItem } from "@/components/post-item"
-import { EmptyPlaceholder } from "@/components/empty-placeholder"
+import { db } from '@/lib/db'
+import { getCurrentUser } from '@/lib/session'
+import { User } from '@/lib/prisma'
+import { DashboardHeader } from '@/components/dashboard-header'
+import { PostCreateButton } from '@/components/post-create-button'
+import { DashboardShell } from '@/components/dashboard-shell'
+import { PostItem } from '@/components/post-item'
+import { EmptyPlaceholder } from '@/components/empty-placeholder'
 
-async function getPostsForUser(userId: User["id"]) {
+async function getPostsForUser(userId: User['id']) {
   return await db.post.findMany({
     where: {
       authorId: userId,
@@ -19,7 +19,7 @@ async function getPostsForUser(userId: User["id"]) {
       createdAt: true,
     },
     orderBy: {
-      updatedAt: "desc",
+      updatedAt: 'desc',
     },
   })
 }

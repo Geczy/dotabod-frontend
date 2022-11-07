@@ -18,7 +18,6 @@ I'll be posting updates and issues here.
 
 A few people have asked me to turn this into a starter. I think we could do that once the new features are out of beta.
 
-
 ## Features
 
 - New `/app` dir,

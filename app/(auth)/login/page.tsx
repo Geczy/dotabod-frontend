@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import io from "socket.io-client";
+import Link from 'next/link'
+import io from 'socket.io-client'
 
 import Image from 'next/image'
 import { Icons } from '@/components/icons'

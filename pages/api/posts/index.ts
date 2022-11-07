@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next"
-import { getSession } from "next-auth/react"
-import * as z from "zod"
+import { NextApiRequest, NextApiResponse } from 'next'
+import { getSession } from 'next-auth/react'
+import * as z from 'zod'
 
-import { db } from "@/lib/db"
-import { withMethods } from "@/lib/api-middlewares/with-methods"
-import { withAuthentication } from "@/lib/api-middlewares/with-authentication"
+import { db } from '@/lib/db'
+import { withMethods } from '@/lib/api-middlewares/with-methods'
+import { withAuthentication } from '@/lib/api-middlewares/with-authentication'
 
 const postCreateSchema = z.object({
   title: z.string().optional(),
@@ -14,7 +14,7 @@ const postCreateSchema = z.object({
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
 
-  if (req.method === "GET") {
+  if (req.method === 'GET') {
     try {
       const posts = await db.post.findMany({
         select: {
@@ -34,7 +34,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
   }
 
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     try {
       const body = postCreateSchema.parse(JSON.parse(req.body))
 
@@ -60,4 +60,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default withMethods(["GET", "POST"], withAuthentication(handler))
+export default withMethods(['GET', 'POST'], withAuthentication(handler))

@@ -1,28 +1,23 @@
-import { Post } from "@/lib/prisma"
-import Link from "next/link"
+import { Post } from '@/lib/prisma'
+import Link from 'next/link'
 
-import { formatDate } from "@/lib/utils"
-import { PostOperations } from "@/components/post-operations"
-import { Skeleton } from "@/ui/skeleton"
+import { formatDate } from '@/lib/utils'
+import { PostOperations } from '@/components/post-operations'
+import { Skeleton } from '@/ui/skeleton'
 
 interface PostItemProps {
-  post: Pick<Post, "id" | "title" | "published" | "createdAt">
+  post: Pick<Post, 'id' | 'title' | 'published' | 'createdAt'>
 }
 
 export function PostItem({ post }: PostItemProps) {
   return (
     <div className="flex items-center justify-between p-4">
       <div className="grid gap-1">
-        <Link
-          href={`/editor/${post.id}`}
-          className="font-semibold hover:underline"
-        >
+        <Link href={`/editor/${post.id}`} className="font-semibold hover:underline">
           {post.title}
         </Link>
         <div>
-          <p className="text-sm text-slate-600">
-            {formatDate(post.createdAt?.toDateString())}
-          </p>
+          <p className="text-sm text-slate-600">{formatDate(post.createdAt?.toDateString())}</p>
         </div>
       </div>
       <PostOperations post={{ id: post.id, title: post.title }} />

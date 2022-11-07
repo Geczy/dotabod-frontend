@@ -1,7 +1,7 @@
 ---
 title: Using Postmark with NextAuth.js
 excerpt: Send NextAuth emails using Postmark email templates.
-date: "2023-03-04"
+date: '2023-03-04'
 ---
 
 Install Postmark
@@ -26,9 +26,9 @@ You can find the values for `POSTMARK_API_TOKEN`, `SMTP_USER` and `SMTP_PASSWORD
 To send next-auth emails using Postmark, update the `NextAuth` callback as follows:
 
 ```ts {3,5,19-32} title="pages/api/auth/[...nextauth].ts"
-import NextAuth from "next-auth"
-import Providers from "next-auth/providers"
-import { Client } from "postmark"
+import NextAuth from 'next-auth'
+import Providers from 'next-auth/providers'
+import { Client } from 'postmark'
 
 const postmarkClient = new Client(process.env.POSTMARK_API_TOKEN)
 
@@ -46,7 +46,7 @@ export default NextAuth({
       from: process.env.SMTP_FROM,
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         const result = await postmarkClient.sendEmailWithTemplate({
-          TemplateId: "TEMPLATE-ID",
+          TemplateId: 'TEMPLATE-ID',
           To: identifier,
           From: provider.from,
           TemplateModel: {

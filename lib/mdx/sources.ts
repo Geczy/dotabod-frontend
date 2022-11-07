@@ -1,11 +1,11 @@
-import * as z from "zod"
-import { createSource } from "."
+import * as z from 'zod'
+import { createSource } from '.'
 
 export const Blog = createSource({
-  contentPath: "content/blog",
-  basePath: "/blog",
-  sortBy: "date",
-  sortOrder: "desc",
+  contentPath: 'content/blog',
+  basePath: '/blog',
+  sortBy: 'date',
+  sortOrder: 'desc',
   frontMatter: z.object({
     title: z.string(),
     date: z.string(),
@@ -14,8 +14,8 @@ export const Blog = createSource({
 })
 
 export const Page = createSource({
-  contentPath: "content/pages",
-  basePath: "/",
+  contentPath: 'content/pages',
+  basePath: '/',
   frontMatter: z.object({
     title: z.string(),
     excerpt: z.string().optional(),

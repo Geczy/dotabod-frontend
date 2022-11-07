@@ -1,11 +1,11 @@
-import { notFound } from "next/navigation"
+import { notFound } from 'next/navigation'
 
-import { Post, User } from "@/lib/prisma"
-import { db } from "@/lib/db"
-import { getCurrentUser } from "@/lib/session"
-import { Editor } from "@/components/editor"
+import { Post, User } from '@/lib/prisma'
+import { db } from '@/lib/db'
+import { getCurrentUser } from '@/lib/session'
+import { Editor } from '@/components/editor'
 
-async function getPostForUser(postId: Post["id"], userId: User["id"]) {
+async function getPostForUser(postId: Post['id'], userId: User['id']) {
   return await db.post.findFirst({
     where: {
       id: postId,
