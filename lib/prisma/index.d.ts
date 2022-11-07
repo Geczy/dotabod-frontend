@@ -13,6 +13,30 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
 
 
 /**
+ * Model steam_to_twitch
+ * 
+ */
+export type steam_to_twitch = {
+  id: bigint
+  created_at: Date | null
+  steamid: string
+  accountid: string
+  channel: string
+  added_by: string
+}
+
+/**
+ * Model twitch_tokens
+ * 
+ */
+export type twitch_tokens = {
+  id: bigint
+  created_at: Date | null
+  refreshToken: string | null
+  accessToken: string | null
+}
+
+/**
  * Model Account
  * 
  */
@@ -90,8 +114,8 @@ export type Post = {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Accounts
- * const accounts = await prisma.account.findMany()
+ * // Fetch zero or more Steam_to_twitches
+ * const steam_to_twitches = await prisma.steam_to_twitch.findMany()
  * ```
  *
  * 
@@ -136,8 +160,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Accounts
-   * const accounts = await prisma.account.findMany()
+   * // Fetch zero or more Steam_to_twitches
+   * const steam_to_twitches = await prisma.steam_to_twitch.findMany()
    * ```
    *
    * 
@@ -224,6 +248,26 @@ export class PrismaClient<
   $transaction<P extends PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): Promise<UnwrapTuple<P>>;
 
       /**
+   * `prisma.steam_to_twitch`: Exposes CRUD operations for the **steam_to_twitch** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Steam_to_twitches
+    * const steam_to_twitches = await prisma.steam_to_twitch.findMany()
+    * ```
+    */
+  get steam_to_twitch(): Prisma.steam_to_twitchDelegate<GlobalReject>;
+
+  /**
+   * `prisma.twitch_tokens`: Exposes CRUD operations for the **twitch_tokens** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Twitch_tokens
+    * const twitch_tokens = await prisma.twitch_tokens.findMany()
+    * ```
+    */
+  get twitch_tokens(): Prisma.twitch_tokensDelegate<GlobalReject>;
+
+  /**
    * `prisma.account`: Exposes CRUD operations for the **Account** model.
     * Example usage:
     * ```ts
@@ -760,6 +804,8 @@ export namespace Prisma {
   }
 
   export const ModelName: {
+    steam_to_twitch: 'steam_to_twitch',
+    twitch_tokens: 'twitch_tokens',
     Account: 'Account',
     Session: 'Session',
     User: 'User',
@@ -979,6 +1025,1826 @@ export namespace Prisma {
   /**
    * Models
    */
+
+  /**
+   * Model steam_to_twitch
+   */
+
+
+  export type AggregateSteam_to_twitch = {
+    _count: Steam_to_twitchCountAggregateOutputType | null
+    _avg: Steam_to_twitchAvgAggregateOutputType | null
+    _sum: Steam_to_twitchSumAggregateOutputType | null
+    _min: Steam_to_twitchMinAggregateOutputType | null
+    _max: Steam_to_twitchMaxAggregateOutputType | null
+  }
+
+  export type Steam_to_twitchAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Steam_to_twitchSumAggregateOutputType = {
+    id: bigint | null
+  }
+
+  export type Steam_to_twitchMinAggregateOutputType = {
+    id: bigint | null
+    created_at: Date | null
+    steamid: string | null
+    accountid: string | null
+    channel: string | null
+    added_by: string | null
+  }
+
+  export type Steam_to_twitchMaxAggregateOutputType = {
+    id: bigint | null
+    created_at: Date | null
+    steamid: string | null
+    accountid: string | null
+    channel: string | null
+    added_by: string | null
+  }
+
+  export type Steam_to_twitchCountAggregateOutputType = {
+    id: number
+    created_at: number
+    steamid: number
+    accountid: number
+    channel: number
+    added_by: number
+    _all: number
+  }
+
+
+  export type Steam_to_twitchAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Steam_to_twitchSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Steam_to_twitchMinAggregateInputType = {
+    id?: true
+    created_at?: true
+    steamid?: true
+    accountid?: true
+    channel?: true
+    added_by?: true
+  }
+
+  export type Steam_to_twitchMaxAggregateInputType = {
+    id?: true
+    created_at?: true
+    steamid?: true
+    accountid?: true
+    channel?: true
+    added_by?: true
+  }
+
+  export type Steam_to_twitchCountAggregateInputType = {
+    id?: true
+    created_at?: true
+    steamid?: true
+    accountid?: true
+    channel?: true
+    added_by?: true
+    _all?: true
+  }
+
+  export type Steam_to_twitchAggregateArgs = {
+    /**
+     * Filter which steam_to_twitch to aggregate.
+     * 
+    **/
+    where?: steam_to_twitchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of steam_to_twitches to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<steam_to_twitchOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     * 
+    **/
+    cursor?: steam_to_twitchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` steam_to_twitches from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` steam_to_twitches.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned steam_to_twitches
+    **/
+    _count?: true | Steam_to_twitchCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Steam_to_twitchAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Steam_to_twitchSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Steam_to_twitchMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Steam_to_twitchMaxAggregateInputType
+  }
+
+  export type GetSteam_to_twitchAggregateType<T extends Steam_to_twitchAggregateArgs> = {
+        [P in keyof T & keyof AggregateSteam_to_twitch]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSteam_to_twitch[P]>
+      : GetScalarType<T[P], AggregateSteam_to_twitch[P]>
+  }
+
+
+
+
+  export type Steam_to_twitchGroupByArgs = {
+    where?: steam_to_twitchWhereInput
+    orderBy?: Enumerable<steam_to_twitchOrderByWithAggregationInput>
+    by: Array<Steam_to_twitchScalarFieldEnum>
+    having?: steam_to_twitchScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Steam_to_twitchCountAggregateInputType | true
+    _avg?: Steam_to_twitchAvgAggregateInputType
+    _sum?: Steam_to_twitchSumAggregateInputType
+    _min?: Steam_to_twitchMinAggregateInputType
+    _max?: Steam_to_twitchMaxAggregateInputType
+  }
+
+
+  export type Steam_to_twitchGroupByOutputType = {
+    id: bigint
+    created_at: Date | null
+    steamid: string
+    accountid: string
+    channel: string
+    added_by: string
+    _count: Steam_to_twitchCountAggregateOutputType | null
+    _avg: Steam_to_twitchAvgAggregateOutputType | null
+    _sum: Steam_to_twitchSumAggregateOutputType | null
+    _min: Steam_to_twitchMinAggregateOutputType | null
+    _max: Steam_to_twitchMaxAggregateOutputType | null
+  }
+
+  type GetSteam_to_twitchGroupByPayload<T extends Steam_to_twitchGroupByArgs> = PrismaPromise<
+    Array<
+      PickArray<Steam_to_twitchGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Steam_to_twitchGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Steam_to_twitchGroupByOutputType[P]>
+            : GetScalarType<T[P], Steam_to_twitchGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type steam_to_twitchSelect = {
+    id?: boolean
+    created_at?: boolean
+    steamid?: boolean
+    accountid?: boolean
+    channel?: boolean
+    added_by?: boolean
+  }
+
+  export type steam_to_twitchGetPayload<
+    S extends boolean | null | undefined | steam_to_twitchArgs,
+    U = keyof S
+      > = S extends true
+        ? steam_to_twitch
+    : S extends undefined
+    ? never
+    : S extends steam_to_twitchArgs | steam_to_twitchFindManyArgs
+    ?'include' extends U
+    ? steam_to_twitch 
+    : 'select' extends U
+    ? {
+    [P in TrueKeys<S['select']>]:
+    P extends keyof steam_to_twitch ? steam_to_twitch[P] : never
+  } 
+    : steam_to_twitch
+  : steam_to_twitch
+
+
+  type steam_to_twitchCountArgs = Merge<
+    Omit<steam_to_twitchFindManyArgs, 'select' | 'include'> & {
+      select?: Steam_to_twitchCountAggregateInputType | true
+    }
+  >
+
+  export interface steam_to_twitchDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+    /**
+     * Find zero or one Steam_to_twitch that matches the filter.
+     * @param {steam_to_twitchFindUniqueArgs} args - Arguments to find a Steam_to_twitch
+     * @example
+     * // Get one Steam_to_twitch
+     * const steam_to_twitch = await prisma.steam_to_twitch.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends steam_to_twitchFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, steam_to_twitchFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'steam_to_twitch'> extends True ? CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T>>> : CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch | null, null>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T> | null, null>>
+
+    /**
+     * Find the first Steam_to_twitch that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {steam_to_twitchFindFirstArgs} args - Arguments to find a Steam_to_twitch
+     * @example
+     * // Get one Steam_to_twitch
+     * const steam_to_twitch = await prisma.steam_to_twitch.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends steam_to_twitchFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, steam_to_twitchFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'steam_to_twitch'> extends True ? CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T>>> : CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch | null, null>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T> | null, null>>
+
+    /**
+     * Find zero or more Steam_to_twitches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {steam_to_twitchFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Steam_to_twitches
+     * const steam_to_twitches = await prisma.steam_to_twitch.findMany()
+     * 
+     * // Get first 10 Steam_to_twitches
+     * const steam_to_twitches = await prisma.steam_to_twitch.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const steam_to_twitchWithIdOnly = await prisma.steam_to_twitch.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends steam_to_twitchFindManyArgs>(
+      args?: SelectSubset<T, steam_to_twitchFindManyArgs>
+    ): CheckSelect<T, PrismaPromise<Array<steam_to_twitch>>, PrismaPromise<Array<steam_to_twitchGetPayload<T>>>>
+
+    /**
+     * Create a Steam_to_twitch.
+     * @param {steam_to_twitchCreateArgs} args - Arguments to create a Steam_to_twitch.
+     * @example
+     * // Create one Steam_to_twitch
+     * const Steam_to_twitch = await prisma.steam_to_twitch.create({
+     *   data: {
+     *     // ... data to create a Steam_to_twitch
+     *   }
+     * })
+     * 
+    **/
+    create<T extends steam_to_twitchCreateArgs>(
+      args: SelectSubset<T, steam_to_twitchCreateArgs>
+    ): CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T>>>
+
+    /**
+     * Create many Steam_to_twitches.
+     *     @param {steam_to_twitchCreateManyArgs} args - Arguments to create many Steam_to_twitches.
+     *     @example
+     *     // Create many Steam_to_twitches
+     *     const steam_to_twitch = await prisma.steam_to_twitch.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends steam_to_twitchCreateManyArgs>(
+      args?: SelectSubset<T, steam_to_twitchCreateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Steam_to_twitch.
+     * @param {steam_to_twitchDeleteArgs} args - Arguments to delete one Steam_to_twitch.
+     * @example
+     * // Delete one Steam_to_twitch
+     * const Steam_to_twitch = await prisma.steam_to_twitch.delete({
+     *   where: {
+     *     // ... filter to delete one Steam_to_twitch
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends steam_to_twitchDeleteArgs>(
+      args: SelectSubset<T, steam_to_twitchDeleteArgs>
+    ): CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T>>>
+
+    /**
+     * Update one Steam_to_twitch.
+     * @param {steam_to_twitchUpdateArgs} args - Arguments to update one Steam_to_twitch.
+     * @example
+     * // Update one Steam_to_twitch
+     * const steam_to_twitch = await prisma.steam_to_twitch.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends steam_to_twitchUpdateArgs>(
+      args: SelectSubset<T, steam_to_twitchUpdateArgs>
+    ): CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T>>>
+
+    /**
+     * Delete zero or more Steam_to_twitches.
+     * @param {steam_to_twitchDeleteManyArgs} args - Arguments to filter Steam_to_twitches to delete.
+     * @example
+     * // Delete a few Steam_to_twitches
+     * const { count } = await prisma.steam_to_twitch.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends steam_to_twitchDeleteManyArgs>(
+      args?: SelectSubset<T, steam_to_twitchDeleteManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Steam_to_twitches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {steam_to_twitchUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Steam_to_twitches
+     * const steam_to_twitch = await prisma.steam_to_twitch.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends steam_to_twitchUpdateManyArgs>(
+      args: SelectSubset<T, steam_to_twitchUpdateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Steam_to_twitch.
+     * @param {steam_to_twitchUpsertArgs} args - Arguments to update or create a Steam_to_twitch.
+     * @example
+     * // Update or create a Steam_to_twitch
+     * const steam_to_twitch = await prisma.steam_to_twitch.upsert({
+     *   create: {
+     *     // ... data to create a Steam_to_twitch
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Steam_to_twitch we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends steam_to_twitchUpsertArgs>(
+      args: SelectSubset<T, steam_to_twitchUpsertArgs>
+    ): CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T>>>
+
+    /**
+     * Find one Steam_to_twitch that matches the filter or throw
+     * `NotFoundError` if no matches were found.
+     * @param {steam_to_twitchFindUniqueOrThrowArgs} args - Arguments to find a Steam_to_twitch
+     * @example
+     * // Get one Steam_to_twitch
+     * const steam_to_twitch = await prisma.steam_to_twitch.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends steam_to_twitchFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, steam_to_twitchFindUniqueOrThrowArgs>
+    ): CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T>>>
+
+    /**
+     * Find the first Steam_to_twitch that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {steam_to_twitchFindFirstOrThrowArgs} args - Arguments to find a Steam_to_twitch
+     * @example
+     * // Get one Steam_to_twitch
+     * const steam_to_twitch = await prisma.steam_to_twitch.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends steam_to_twitchFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, steam_to_twitchFindFirstOrThrowArgs>
+    ): CheckSelect<T, Prisma__steam_to_twitchClient<steam_to_twitch>, Prisma__steam_to_twitchClient<steam_to_twitchGetPayload<T>>>
+
+    /**
+     * Count the number of Steam_to_twitches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {steam_to_twitchCountArgs} args - Arguments to filter Steam_to_twitches to count.
+     * @example
+     * // Count the number of Steam_to_twitches
+     * const count = await prisma.steam_to_twitch.count({
+     *   where: {
+     *     // ... the filter for the Steam_to_twitches we want to count
+     *   }
+     * })
+    **/
+    count<T extends steam_to_twitchCountArgs>(
+      args?: Subset<T, steam_to_twitchCountArgs>,
+    ): PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Steam_to_twitchCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Steam_to_twitch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Steam_to_twitchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Steam_to_twitchAggregateArgs>(args: Subset<T, Steam_to_twitchAggregateArgs>): PrismaPromise<GetSteam_to_twitchAggregateType<T>>
+
+    /**
+     * Group by Steam_to_twitch.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Steam_to_twitchGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends Steam_to_twitchGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: Steam_to_twitchGroupByArgs['orderBy'] }
+        : { orderBy?: Steam_to_twitchGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, Steam_to_twitchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSteam_to_twitchGroupByPayload<T> : PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for steam_to_twitch.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__steam_to_twitchClient<T, Null = never> implements PrismaPromise<T> {
+    [prisma]: true;
+    private readonly _dmmf;
+    private readonly _fetcher;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+    readonly [Symbol.toStringTag]: 'PrismaClientPromise';
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * steam_to_twitch base type for findUnique actions
+   */
+  export type steam_to_twitchFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the steam_to_twitch
+     * 
+    **/
+    select?: steam_to_twitchSelect | null
+    /**
+     * Filter, which steam_to_twitch to fetch.
+     * 
+    **/
+    where: steam_to_twitchWhereUniqueInput
+  }
+
+  /**
+   * steam_to_twitch: findUnique
+   */
+  export interface steam_to_twitchFindUniqueArgs extends steam_to_twitchFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * steam_to_twitch base type for findFirst actions
+   */
+  export type steam_to_twitchFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the steam_to_twitch
+     * 
+    **/
+    select?: steam_to_twitchSelect | null
+    /**
+     * Filter, which steam_to_twitch to fetch.
+     * 
+    **/
+    where?: steam_to_twitchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of steam_to_twitches to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<steam_to_twitchOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for steam_to_twitches.
+     * 
+    **/
+    cursor?: steam_to_twitchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` steam_to_twitches from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` steam_to_twitches.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of steam_to_twitches.
+     * 
+    **/
+    distinct?: Enumerable<Steam_to_twitchScalarFieldEnum>
+  }
+
+  /**
+   * steam_to_twitch: findFirst
+   */
+  export interface steam_to_twitchFindFirstArgs extends steam_to_twitchFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * steam_to_twitch findMany
+   */
+  export type steam_to_twitchFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the steam_to_twitch
+     * 
+    **/
+    select?: steam_to_twitchSelect | null
+    /**
+     * Filter, which steam_to_twitches to fetch.
+     * 
+    **/
+    where?: steam_to_twitchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of steam_to_twitches to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<steam_to_twitchOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing steam_to_twitches.
+     * 
+    **/
+    cursor?: steam_to_twitchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` steam_to_twitches from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` steam_to_twitches.
+     * 
+    **/
+    skip?: number
+    distinct?: Enumerable<Steam_to_twitchScalarFieldEnum>
+  }
+
+
+  /**
+   * steam_to_twitch create
+   */
+  export type steam_to_twitchCreateArgs = {
+    /**
+     * Select specific fields to fetch from the steam_to_twitch
+     * 
+    **/
+    select?: steam_to_twitchSelect | null
+    /**
+     * The data needed to create a steam_to_twitch.
+     * 
+    **/
+    data: XOR<steam_to_twitchCreateInput, steam_to_twitchUncheckedCreateInput>
+  }
+
+
+  /**
+   * steam_to_twitch createMany
+   */
+  export type steam_to_twitchCreateManyArgs = {
+    /**
+     * The data used to create many steam_to_twitches.
+     * 
+    **/
+    data: Enumerable<steam_to_twitchCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * steam_to_twitch update
+   */
+  export type steam_to_twitchUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the steam_to_twitch
+     * 
+    **/
+    select?: steam_to_twitchSelect | null
+    /**
+     * The data needed to update a steam_to_twitch.
+     * 
+    **/
+    data: XOR<steam_to_twitchUpdateInput, steam_to_twitchUncheckedUpdateInput>
+    /**
+     * Choose, which steam_to_twitch to update.
+     * 
+    **/
+    where: steam_to_twitchWhereUniqueInput
+  }
+
+
+  /**
+   * steam_to_twitch updateMany
+   */
+  export type steam_to_twitchUpdateManyArgs = {
+    /**
+     * The data used to update steam_to_twitches.
+     * 
+    **/
+    data: XOR<steam_to_twitchUpdateManyMutationInput, steam_to_twitchUncheckedUpdateManyInput>
+    /**
+     * Filter which steam_to_twitches to update
+     * 
+    **/
+    where?: steam_to_twitchWhereInput
+  }
+
+
+  /**
+   * steam_to_twitch upsert
+   */
+  export type steam_to_twitchUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the steam_to_twitch
+     * 
+    **/
+    select?: steam_to_twitchSelect | null
+    /**
+     * The filter to search for the steam_to_twitch to update in case it exists.
+     * 
+    **/
+    where: steam_to_twitchWhereUniqueInput
+    /**
+     * In case the steam_to_twitch found by the `where` argument doesn't exist, create a new steam_to_twitch with this data.
+     * 
+    **/
+    create: XOR<steam_to_twitchCreateInput, steam_to_twitchUncheckedCreateInput>
+    /**
+     * In case the steam_to_twitch was found with the provided `where` argument, update it with this data.
+     * 
+    **/
+    update: XOR<steam_to_twitchUpdateInput, steam_to_twitchUncheckedUpdateInput>
+  }
+
+
+  /**
+   * steam_to_twitch delete
+   */
+  export type steam_to_twitchDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the steam_to_twitch
+     * 
+    **/
+    select?: steam_to_twitchSelect | null
+    /**
+     * Filter which steam_to_twitch to delete.
+     * 
+    **/
+    where: steam_to_twitchWhereUniqueInput
+  }
+
+
+  /**
+   * steam_to_twitch deleteMany
+   */
+  export type steam_to_twitchDeleteManyArgs = {
+    /**
+     * Filter which steam_to_twitches to delete
+     * 
+    **/
+    where?: steam_to_twitchWhereInput
+  }
+
+
+  /**
+   * steam_to_twitch: findUniqueOrThrow
+   */
+  export type steam_to_twitchFindUniqueOrThrowArgs = steam_to_twitchFindUniqueArgsBase
+      
+
+  /**
+   * steam_to_twitch: findFirstOrThrow
+   */
+  export type steam_to_twitchFindFirstOrThrowArgs = steam_to_twitchFindFirstArgsBase
+      
+
+  /**
+   * steam_to_twitch without action
+   */
+  export type steam_to_twitchArgs = {
+    /**
+     * Select specific fields to fetch from the steam_to_twitch
+     * 
+    **/
+    select?: steam_to_twitchSelect | null
+  }
+
+
+
+  /**
+   * Model twitch_tokens
+   */
+
+
+  export type AggregateTwitch_tokens = {
+    _count: Twitch_tokensCountAggregateOutputType | null
+    _avg: Twitch_tokensAvgAggregateOutputType | null
+    _sum: Twitch_tokensSumAggregateOutputType | null
+    _min: Twitch_tokensMinAggregateOutputType | null
+    _max: Twitch_tokensMaxAggregateOutputType | null
+  }
+
+  export type Twitch_tokensAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Twitch_tokensSumAggregateOutputType = {
+    id: bigint | null
+  }
+
+  export type Twitch_tokensMinAggregateOutputType = {
+    id: bigint | null
+    created_at: Date | null
+    refreshToken: string | null
+    accessToken: string | null
+  }
+
+  export type Twitch_tokensMaxAggregateOutputType = {
+    id: bigint | null
+    created_at: Date | null
+    refreshToken: string | null
+    accessToken: string | null
+  }
+
+  export type Twitch_tokensCountAggregateOutputType = {
+    id: number
+    created_at: number
+    refreshToken: number
+    accessToken: number
+    _all: number
+  }
+
+
+  export type Twitch_tokensAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Twitch_tokensSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Twitch_tokensMinAggregateInputType = {
+    id?: true
+    created_at?: true
+    refreshToken?: true
+    accessToken?: true
+  }
+
+  export type Twitch_tokensMaxAggregateInputType = {
+    id?: true
+    created_at?: true
+    refreshToken?: true
+    accessToken?: true
+  }
+
+  export type Twitch_tokensCountAggregateInputType = {
+    id?: true
+    created_at?: true
+    refreshToken?: true
+    accessToken?: true
+    _all?: true
+  }
+
+  export type Twitch_tokensAggregateArgs = {
+    /**
+     * Filter which twitch_tokens to aggregate.
+     * 
+    **/
+    where?: twitch_tokensWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of twitch_tokens to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<twitch_tokensOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     * 
+    **/
+    cursor?: twitch_tokensWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` twitch_tokens from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` twitch_tokens.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned twitch_tokens
+    **/
+    _count?: true | Twitch_tokensCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Twitch_tokensAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Twitch_tokensSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Twitch_tokensMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Twitch_tokensMaxAggregateInputType
+  }
+
+  export type GetTwitch_tokensAggregateType<T extends Twitch_tokensAggregateArgs> = {
+        [P in keyof T & keyof AggregateTwitch_tokens]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTwitch_tokens[P]>
+      : GetScalarType<T[P], AggregateTwitch_tokens[P]>
+  }
+
+
+
+
+  export type Twitch_tokensGroupByArgs = {
+    where?: twitch_tokensWhereInput
+    orderBy?: Enumerable<twitch_tokensOrderByWithAggregationInput>
+    by: Array<Twitch_tokensScalarFieldEnum>
+    having?: twitch_tokensScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Twitch_tokensCountAggregateInputType | true
+    _avg?: Twitch_tokensAvgAggregateInputType
+    _sum?: Twitch_tokensSumAggregateInputType
+    _min?: Twitch_tokensMinAggregateInputType
+    _max?: Twitch_tokensMaxAggregateInputType
+  }
+
+
+  export type Twitch_tokensGroupByOutputType = {
+    id: bigint
+    created_at: Date | null
+    refreshToken: string | null
+    accessToken: string | null
+    _count: Twitch_tokensCountAggregateOutputType | null
+    _avg: Twitch_tokensAvgAggregateOutputType | null
+    _sum: Twitch_tokensSumAggregateOutputType | null
+    _min: Twitch_tokensMinAggregateOutputType | null
+    _max: Twitch_tokensMaxAggregateOutputType | null
+  }
+
+  type GetTwitch_tokensGroupByPayload<T extends Twitch_tokensGroupByArgs> = PrismaPromise<
+    Array<
+      PickArray<Twitch_tokensGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Twitch_tokensGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Twitch_tokensGroupByOutputType[P]>
+            : GetScalarType<T[P], Twitch_tokensGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type twitch_tokensSelect = {
+    id?: boolean
+    created_at?: boolean
+    refreshToken?: boolean
+    accessToken?: boolean
+  }
+
+  export type twitch_tokensGetPayload<
+    S extends boolean | null | undefined | twitch_tokensArgs,
+    U = keyof S
+      > = S extends true
+        ? twitch_tokens
+    : S extends undefined
+    ? never
+    : S extends twitch_tokensArgs | twitch_tokensFindManyArgs
+    ?'include' extends U
+    ? twitch_tokens 
+    : 'select' extends U
+    ? {
+    [P in TrueKeys<S['select']>]:
+    P extends keyof twitch_tokens ? twitch_tokens[P] : never
+  } 
+    : twitch_tokens
+  : twitch_tokens
+
+
+  type twitch_tokensCountArgs = Merge<
+    Omit<twitch_tokensFindManyArgs, 'select' | 'include'> & {
+      select?: Twitch_tokensCountAggregateInputType | true
+    }
+  >
+
+  export interface twitch_tokensDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined> {
+    /**
+     * Find zero or one Twitch_tokens that matches the filter.
+     * @param {twitch_tokensFindUniqueArgs} args - Arguments to find a Twitch_tokens
+     * @example
+     * // Get one Twitch_tokens
+     * const twitch_tokens = await prisma.twitch_tokens.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends twitch_tokensFindUniqueArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, twitch_tokensFindUniqueArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'twitch_tokens'> extends True ? CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T>>> : CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens | null, null>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T> | null, null>>
+
+    /**
+     * Find the first Twitch_tokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {twitch_tokensFindFirstArgs} args - Arguments to find a Twitch_tokens
+     * @example
+     * // Get one Twitch_tokens
+     * const twitch_tokens = await prisma.twitch_tokens.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends twitch_tokensFindFirstArgs,  LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, twitch_tokensFindFirstArgs>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'twitch_tokens'> extends True ? CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T>>> : CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens | null, null>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T> | null, null>>
+
+    /**
+     * Find zero or more Twitch_tokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {twitch_tokensFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Twitch_tokens
+     * const twitch_tokens = await prisma.twitch_tokens.findMany()
+     * 
+     * // Get first 10 Twitch_tokens
+     * const twitch_tokens = await prisma.twitch_tokens.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const twitch_tokensWithIdOnly = await prisma.twitch_tokens.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends twitch_tokensFindManyArgs>(
+      args?: SelectSubset<T, twitch_tokensFindManyArgs>
+    ): CheckSelect<T, PrismaPromise<Array<twitch_tokens>>, PrismaPromise<Array<twitch_tokensGetPayload<T>>>>
+
+    /**
+     * Create a Twitch_tokens.
+     * @param {twitch_tokensCreateArgs} args - Arguments to create a Twitch_tokens.
+     * @example
+     * // Create one Twitch_tokens
+     * const Twitch_tokens = await prisma.twitch_tokens.create({
+     *   data: {
+     *     // ... data to create a Twitch_tokens
+     *   }
+     * })
+     * 
+    **/
+    create<T extends twitch_tokensCreateArgs>(
+      args: SelectSubset<T, twitch_tokensCreateArgs>
+    ): CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T>>>
+
+    /**
+     * Create many Twitch_tokens.
+     *     @param {twitch_tokensCreateManyArgs} args - Arguments to create many Twitch_tokens.
+     *     @example
+     *     // Create many Twitch_tokens
+     *     const twitch_tokens = await prisma.twitch_tokens.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends twitch_tokensCreateManyArgs>(
+      args?: SelectSubset<T, twitch_tokensCreateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Twitch_tokens.
+     * @param {twitch_tokensDeleteArgs} args - Arguments to delete one Twitch_tokens.
+     * @example
+     * // Delete one Twitch_tokens
+     * const Twitch_tokens = await prisma.twitch_tokens.delete({
+     *   where: {
+     *     // ... filter to delete one Twitch_tokens
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends twitch_tokensDeleteArgs>(
+      args: SelectSubset<T, twitch_tokensDeleteArgs>
+    ): CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T>>>
+
+    /**
+     * Update one Twitch_tokens.
+     * @param {twitch_tokensUpdateArgs} args - Arguments to update one Twitch_tokens.
+     * @example
+     * // Update one Twitch_tokens
+     * const twitch_tokens = await prisma.twitch_tokens.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends twitch_tokensUpdateArgs>(
+      args: SelectSubset<T, twitch_tokensUpdateArgs>
+    ): CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T>>>
+
+    /**
+     * Delete zero or more Twitch_tokens.
+     * @param {twitch_tokensDeleteManyArgs} args - Arguments to filter Twitch_tokens to delete.
+     * @example
+     * // Delete a few Twitch_tokens
+     * const { count } = await prisma.twitch_tokens.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends twitch_tokensDeleteManyArgs>(
+      args?: SelectSubset<T, twitch_tokensDeleteManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Twitch_tokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {twitch_tokensUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Twitch_tokens
+     * const twitch_tokens = await prisma.twitch_tokens.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends twitch_tokensUpdateManyArgs>(
+      args: SelectSubset<T, twitch_tokensUpdateManyArgs>
+    ): PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Twitch_tokens.
+     * @param {twitch_tokensUpsertArgs} args - Arguments to update or create a Twitch_tokens.
+     * @example
+     * // Update or create a Twitch_tokens
+     * const twitch_tokens = await prisma.twitch_tokens.upsert({
+     *   create: {
+     *     // ... data to create a Twitch_tokens
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Twitch_tokens we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends twitch_tokensUpsertArgs>(
+      args: SelectSubset<T, twitch_tokensUpsertArgs>
+    ): CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T>>>
+
+    /**
+     * Find one Twitch_tokens that matches the filter or throw
+     * `NotFoundError` if no matches were found.
+     * @param {twitch_tokensFindUniqueOrThrowArgs} args - Arguments to find a Twitch_tokens
+     * @example
+     * // Get one Twitch_tokens
+     * const twitch_tokens = await prisma.twitch_tokens.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends twitch_tokensFindUniqueOrThrowArgs>(
+      args?: SelectSubset<T, twitch_tokensFindUniqueOrThrowArgs>
+    ): CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T>>>
+
+    /**
+     * Find the first Twitch_tokens that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {twitch_tokensFindFirstOrThrowArgs} args - Arguments to find a Twitch_tokens
+     * @example
+     * // Get one Twitch_tokens
+     * const twitch_tokens = await prisma.twitch_tokens.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends twitch_tokensFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, twitch_tokensFindFirstOrThrowArgs>
+    ): CheckSelect<T, Prisma__twitch_tokensClient<twitch_tokens>, Prisma__twitch_tokensClient<twitch_tokensGetPayload<T>>>
+
+    /**
+     * Count the number of Twitch_tokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {twitch_tokensCountArgs} args - Arguments to filter Twitch_tokens to count.
+     * @example
+     * // Count the number of Twitch_tokens
+     * const count = await prisma.twitch_tokens.count({
+     *   where: {
+     *     // ... the filter for the Twitch_tokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends twitch_tokensCountArgs>(
+      args?: Subset<T, twitch_tokensCountArgs>,
+    ): PrismaPromise<
+      T extends _Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Twitch_tokensCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Twitch_tokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Twitch_tokensAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Twitch_tokensAggregateArgs>(args: Subset<T, Twitch_tokensAggregateArgs>): PrismaPromise<GetTwitch_tokensAggregateType<T>>
+
+    /**
+     * Group by Twitch_tokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Twitch_tokensGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends Twitch_tokensGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: Twitch_tokensGroupByArgs['orderBy'] }
+        : { orderBy?: Twitch_tokensGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, Twitch_tokensGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTwitch_tokensGroupByPayload<T> : PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for twitch_tokens.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__twitch_tokensClient<T, Null = never> implements PrismaPromise<T> {
+    [prisma]: true;
+    private readonly _dmmf;
+    private readonly _fetcher;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+    readonly [Symbol.toStringTag]: 'PrismaClientPromise';
+
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * twitch_tokens base type for findUnique actions
+   */
+  export type twitch_tokensFindUniqueArgsBase = {
+    /**
+     * Select specific fields to fetch from the twitch_tokens
+     * 
+    **/
+    select?: twitch_tokensSelect | null
+    /**
+     * Filter, which twitch_tokens to fetch.
+     * 
+    **/
+    where: twitch_tokensWhereUniqueInput
+  }
+
+  /**
+   * twitch_tokens: findUnique
+   */
+  export interface twitch_tokensFindUniqueArgs extends twitch_tokensFindUniqueArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * twitch_tokens base type for findFirst actions
+   */
+  export type twitch_tokensFindFirstArgsBase = {
+    /**
+     * Select specific fields to fetch from the twitch_tokens
+     * 
+    **/
+    select?: twitch_tokensSelect | null
+    /**
+     * Filter, which twitch_tokens to fetch.
+     * 
+    **/
+    where?: twitch_tokensWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of twitch_tokens to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<twitch_tokensOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for twitch_tokens.
+     * 
+    **/
+    cursor?: twitch_tokensWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` twitch_tokens from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` twitch_tokens.
+     * 
+    **/
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of twitch_tokens.
+     * 
+    **/
+    distinct?: Enumerable<Twitch_tokensScalarFieldEnum>
+  }
+
+  /**
+   * twitch_tokens: findFirst
+   */
+  export interface twitch_tokensFindFirstArgs extends twitch_tokensFindFirstArgsBase {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * twitch_tokens findMany
+   */
+  export type twitch_tokensFindManyArgs = {
+    /**
+     * Select specific fields to fetch from the twitch_tokens
+     * 
+    **/
+    select?: twitch_tokensSelect | null
+    /**
+     * Filter, which twitch_tokens to fetch.
+     * 
+    **/
+    where?: twitch_tokensWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of twitch_tokens to fetch.
+     * 
+    **/
+    orderBy?: Enumerable<twitch_tokensOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing twitch_tokens.
+     * 
+    **/
+    cursor?: twitch_tokensWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` twitch_tokens from the position of the cursor.
+     * 
+    **/
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` twitch_tokens.
+     * 
+    **/
+    skip?: number
+    distinct?: Enumerable<Twitch_tokensScalarFieldEnum>
+  }
+
+
+  /**
+   * twitch_tokens create
+   */
+  export type twitch_tokensCreateArgs = {
+    /**
+     * Select specific fields to fetch from the twitch_tokens
+     * 
+    **/
+    select?: twitch_tokensSelect | null
+    /**
+     * The data needed to create a twitch_tokens.
+     * 
+    **/
+    data: XOR<twitch_tokensCreateInput, twitch_tokensUncheckedCreateInput>
+  }
+
+
+  /**
+   * twitch_tokens createMany
+   */
+  export type twitch_tokensCreateManyArgs = {
+    /**
+     * The data used to create many twitch_tokens.
+     * 
+    **/
+    data: Enumerable<twitch_tokensCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * twitch_tokens update
+   */
+  export type twitch_tokensUpdateArgs = {
+    /**
+     * Select specific fields to fetch from the twitch_tokens
+     * 
+    **/
+    select?: twitch_tokensSelect | null
+    /**
+     * The data needed to update a twitch_tokens.
+     * 
+    **/
+    data: XOR<twitch_tokensUpdateInput, twitch_tokensUncheckedUpdateInput>
+    /**
+     * Choose, which twitch_tokens to update.
+     * 
+    **/
+    where: twitch_tokensWhereUniqueInput
+  }
+
+
+  /**
+   * twitch_tokens updateMany
+   */
+  export type twitch_tokensUpdateManyArgs = {
+    /**
+     * The data used to update twitch_tokens.
+     * 
+    **/
+    data: XOR<twitch_tokensUpdateManyMutationInput, twitch_tokensUncheckedUpdateManyInput>
+    /**
+     * Filter which twitch_tokens to update
+     * 
+    **/
+    where?: twitch_tokensWhereInput
+  }
+
+
+  /**
+   * twitch_tokens upsert
+   */
+  export type twitch_tokensUpsertArgs = {
+    /**
+     * Select specific fields to fetch from the twitch_tokens
+     * 
+    **/
+    select?: twitch_tokensSelect | null
+    /**
+     * The filter to search for the twitch_tokens to update in case it exists.
+     * 
+    **/
+    where: twitch_tokensWhereUniqueInput
+    /**
+     * In case the twitch_tokens found by the `where` argument doesn't exist, create a new twitch_tokens with this data.
+     * 
+    **/
+    create: XOR<twitch_tokensCreateInput, twitch_tokensUncheckedCreateInput>
+    /**
+     * In case the twitch_tokens was found with the provided `where` argument, update it with this data.
+     * 
+    **/
+    update: XOR<twitch_tokensUpdateInput, twitch_tokensUncheckedUpdateInput>
+  }
+
+
+  /**
+   * twitch_tokens delete
+   */
+  export type twitch_tokensDeleteArgs = {
+    /**
+     * Select specific fields to fetch from the twitch_tokens
+     * 
+    **/
+    select?: twitch_tokensSelect | null
+    /**
+     * Filter which twitch_tokens to delete.
+     * 
+    **/
+    where: twitch_tokensWhereUniqueInput
+  }
+
+
+  /**
+   * twitch_tokens deleteMany
+   */
+  export type twitch_tokensDeleteManyArgs = {
+    /**
+     * Filter which twitch_tokens to delete
+     * 
+    **/
+    where?: twitch_tokensWhereInput
+  }
+
+
+  /**
+   * twitch_tokens: findUniqueOrThrow
+   */
+  export type twitch_tokensFindUniqueOrThrowArgs = twitch_tokensFindUniqueArgsBase
+      
+
+  /**
+   * twitch_tokens: findFirstOrThrow
+   */
+  export type twitch_tokensFindFirstOrThrowArgs = twitch_tokensFindFirstArgsBase
+      
+
+  /**
+   * twitch_tokens without action
+   */
+  export type twitch_tokensArgs = {
+    /**
+     * Select specific fields to fetch from the twitch_tokens
+     * 
+    **/
+    select?: twitch_tokensSelect | null
+  }
+
+
 
   /**
    * Model Account
@@ -5739,6 +7605,14 @@ export namespace Prisma {
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
 
 
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
   export const SessionScalarFieldEnum: {
     id: 'id',
     sessionToken: 'sessionToken',
@@ -5757,6 +7631,18 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const Steam_to_twitchScalarFieldEnum: {
+    id: 'id',
+    created_at: 'created_at',
+    steamid: 'steamid',
+    accountid: 'accountid',
+    channel: 'channel',
+    added_by: 'added_by'
+  };
+
+  export type Steam_to_twitchScalarFieldEnum = (typeof Steam_to_twitchScalarFieldEnum)[keyof typeof Steam_to_twitchScalarFieldEnum]
+
+
   export const TransactionIsolationLevel: {
     ReadUncommitted: 'ReadUncommitted',
     ReadCommitted: 'ReadCommitted',
@@ -5765,6 +7651,16 @@ export namespace Prisma {
   };
 
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+  export const Twitch_tokensScalarFieldEnum: {
+    id: 'id',
+    created_at: 'created_at',
+    refreshToken: 'refreshToken',
+    accessToken: 'accessToken'
+  };
+
+  export type Twitch_tokensScalarFieldEnum = (typeof Twitch_tokensScalarFieldEnum)[keyof typeof Twitch_tokensScalarFieldEnum]
 
 
   export const UserScalarFieldEnum: {
@@ -5793,6 +7689,100 @@ export namespace Prisma {
    * Deep Input Types
    */
 
+
+  export type steam_to_twitchWhereInput = {
+    AND?: Enumerable<steam_to_twitchWhereInput>
+    OR?: Enumerable<steam_to_twitchWhereInput>
+    NOT?: Enumerable<steam_to_twitchWhereInput>
+    id?: BigIntFilter | bigint | number
+    created_at?: DateTimeNullableFilter | Date | string | null
+    steamid?: StringFilter | string
+    accountid?: StringFilter | string
+    channel?: StringFilter | string
+    added_by?: StringFilter | string
+  }
+
+  export type steam_to_twitchOrderByWithRelationInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    steamid?: SortOrder
+    accountid?: SortOrder
+    channel?: SortOrder
+    added_by?: SortOrder
+  }
+
+  export type steam_to_twitchWhereUniqueInput = {
+    steamid_channel?: steam_to_twitchSteamidChannelCompoundUniqueInput
+  }
+
+  export type steam_to_twitchOrderByWithAggregationInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    steamid?: SortOrder
+    accountid?: SortOrder
+    channel?: SortOrder
+    added_by?: SortOrder
+    _count?: steam_to_twitchCountOrderByAggregateInput
+    _avg?: steam_to_twitchAvgOrderByAggregateInput
+    _max?: steam_to_twitchMaxOrderByAggregateInput
+    _min?: steam_to_twitchMinOrderByAggregateInput
+    _sum?: steam_to_twitchSumOrderByAggregateInput
+  }
+
+  export type steam_to_twitchScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<steam_to_twitchScalarWhereWithAggregatesInput>
+    OR?: Enumerable<steam_to_twitchScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<steam_to_twitchScalarWhereWithAggregatesInput>
+    id?: BigIntWithAggregatesFilter | bigint | number
+    created_at?: DateTimeNullableWithAggregatesFilter | Date | string | null
+    steamid?: StringWithAggregatesFilter | string
+    accountid?: StringWithAggregatesFilter | string
+    channel?: StringWithAggregatesFilter | string
+    added_by?: StringWithAggregatesFilter | string
+  }
+
+  export type twitch_tokensWhereInput = {
+    AND?: Enumerable<twitch_tokensWhereInput>
+    OR?: Enumerable<twitch_tokensWhereInput>
+    NOT?: Enumerable<twitch_tokensWhereInput>
+    id?: BigIntFilter | bigint | number
+    created_at?: DateTimeNullableFilter | Date | string | null
+    refreshToken?: StringNullableFilter | string | null
+    accessToken?: StringNullableFilter | string | null
+  }
+
+  export type twitch_tokensOrderByWithRelationInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    refreshToken?: SortOrder
+    accessToken?: SortOrder
+  }
+
+  export type twitch_tokensWhereUniqueInput = {
+    id?: bigint | number
+  }
+
+  export type twitch_tokensOrderByWithAggregationInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    refreshToken?: SortOrder
+    accessToken?: SortOrder
+    _count?: twitch_tokensCountOrderByAggregateInput
+    _avg?: twitch_tokensAvgOrderByAggregateInput
+    _max?: twitch_tokensMaxOrderByAggregateInput
+    _min?: twitch_tokensMinOrderByAggregateInput
+    _sum?: twitch_tokensSumOrderByAggregateInput
+  }
+
+  export type twitch_tokensScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<twitch_tokensScalarWhereWithAggregatesInput>
+    OR?: Enumerable<twitch_tokensScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<twitch_tokensScalarWhereWithAggregatesInput>
+    id?: BigIntWithAggregatesFilter | bigint | number
+    created_at?: DateTimeNullableWithAggregatesFilter | Date | string | null
+    refreshToken?: StringNullableWithAggregatesFilter | string | null
+    accessToken?: StringNullableWithAggregatesFilter | string | null
+  }
 
   export type AccountWhereInput = {
     AND?: Enumerable<AccountWhereInput>
@@ -6075,6 +8065,118 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     authorId?: StringWithAggregatesFilter | string
+  }
+
+  export type steam_to_twitchCreateInput = {
+    id?: bigint | number
+    created_at?: Date | string | null
+    steamid: string
+    accountid: string
+    channel: string
+    added_by: string
+  }
+
+  export type steam_to_twitchUncheckedCreateInput = {
+    id?: bigint | number
+    created_at?: Date | string | null
+    steamid: string
+    accountid: string
+    channel: string
+    added_by: string
+  }
+
+  export type steam_to_twitchUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    steamid?: StringFieldUpdateOperationsInput | string
+    accountid?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    added_by?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type steam_to_twitchUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    steamid?: StringFieldUpdateOperationsInput | string
+    accountid?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    added_by?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type steam_to_twitchCreateManyInput = {
+    id?: bigint | number
+    created_at?: Date | string | null
+    steamid: string
+    accountid: string
+    channel: string
+    added_by: string
+  }
+
+  export type steam_to_twitchUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    steamid?: StringFieldUpdateOperationsInput | string
+    accountid?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    added_by?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type steam_to_twitchUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    steamid?: StringFieldUpdateOperationsInput | string
+    accountid?: StringFieldUpdateOperationsInput | string
+    channel?: StringFieldUpdateOperationsInput | string
+    added_by?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type twitch_tokensCreateInput = {
+    id?: bigint | number
+    created_at?: Date | string | null
+    refreshToken?: string | null
+    accessToken?: string | null
+  }
+
+  export type twitch_tokensUncheckedCreateInput = {
+    id?: bigint | number
+    created_at?: Date | string | null
+    refreshToken?: string | null
+    accessToken?: string | null
+  }
+
+  export type twitch_tokensUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type twitch_tokensUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type twitch_tokensCreateManyInput = {
+    id?: bigint | number
+    created_at?: Date | string | null
+    refreshToken?: string | null
+    accessToken?: string | null
+  }
+
+  export type twitch_tokensUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type twitch_tokensUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AccountCreateInput = {
@@ -6436,6 +8538,28 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type BigIntFilter = {
+    equals?: bigint | number
+    in?: Enumerable<bigint> | Enumerable<number>
+    notIn?: Enumerable<bigint> | Enumerable<number>
+    lt?: bigint | number
+    lte?: bigint | number
+    gt?: bigint | number
+    gte?: bigint | number
+    not?: NestedBigIntFilter | bigint | number
+  }
+
+  export type DateTimeNullableFilter = {
+    equals?: Date | string | null
+    in?: Enumerable<Date> | Enumerable<string> | null
+    notIn?: Enumerable<Date> | Enumerable<string> | null
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeNullableFilter | Date | string | null
+  }
+
   export type StringFilter = {
     equals?: string
     in?: Enumerable<string>
@@ -6447,7 +8571,96 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
+    mode?: QueryMode
     not?: NestedStringFilter | string
+  }
+
+  export type steam_to_twitchSteamidChannelCompoundUniqueInput = {
+    steamid: string
+    channel: string
+  }
+
+  export type steam_to_twitchCountOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    steamid?: SortOrder
+    accountid?: SortOrder
+    channel?: SortOrder
+    added_by?: SortOrder
+  }
+
+  export type steam_to_twitchAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type steam_to_twitchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    steamid?: SortOrder
+    accountid?: SortOrder
+    channel?: SortOrder
+    added_by?: SortOrder
+  }
+
+  export type steam_to_twitchMinOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    steamid?: SortOrder
+    accountid?: SortOrder
+    channel?: SortOrder
+    added_by?: SortOrder
+  }
+
+  export type steam_to_twitchSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type BigIntWithAggregatesFilter = {
+    equals?: bigint | number
+    in?: Enumerable<bigint> | Enumerable<number>
+    notIn?: Enumerable<bigint> | Enumerable<number>
+    lt?: bigint | number
+    lte?: bigint | number
+    gt?: bigint | number
+    gte?: bigint | number
+    not?: NestedBigIntWithAggregatesFilter | bigint | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedBigIntFilter
+    _min?: NestedBigIntFilter
+    _max?: NestedBigIntFilter
+  }
+
+  export type DateTimeNullableWithAggregatesFilter = {
+    equals?: Date | string | null
+    in?: Enumerable<Date> | Enumerable<string> | null
+    notIn?: Enumerable<Date> | Enumerable<string> | null
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeNullableWithAggregatesFilter | Date | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedDateTimeNullableFilter
+    _max?: NestedDateTimeNullableFilter
+  }
+
+  export type StringWithAggregatesFilter = {
+    equals?: string
+    in?: Enumerable<string>
+    notIn?: Enumerable<string>
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter | string
+    _count?: NestedIntFilter
+    _min?: NestedStringFilter
+    _max?: NestedStringFilter
   }
 
   export type StringNullableFilter = {
@@ -6461,7 +8674,55 @@ export namespace Prisma {
     contains?: string
     startsWith?: string
     endsWith?: string
+    mode?: QueryMode
     not?: NestedStringNullableFilter | string | null
+  }
+
+  export type twitch_tokensCountOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    refreshToken?: SortOrder
+    accessToken?: SortOrder
+  }
+
+  export type twitch_tokensAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type twitch_tokensMaxOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    refreshToken?: SortOrder
+    accessToken?: SortOrder
+  }
+
+  export type twitch_tokensMinOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    refreshToken?: SortOrder
+    accessToken?: SortOrder
+  }
+
+  export type twitch_tokensSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedStringNullableFilter
+    _max?: NestedStringNullableFilter
   }
 
   export type IntNullableFilter = {
@@ -6555,40 +8816,6 @@ export namespace Prisma {
     expires_at?: SortOrder
   }
 
-  export type StringWithAggregatesFilter = {
-    equals?: string
-    in?: Enumerable<string>
-    notIn?: Enumerable<string>
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringWithAggregatesFilter | string
-    _count?: NestedIntFilter
-    _min?: NestedStringFilter
-    _max?: NestedStringFilter
-  }
-
-  export type StringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
-  }
-
   export type IntNullableWithAggregatesFilter = {
     equals?: number | null
     in?: Enumerable<number> | null
@@ -6638,17 +8865,6 @@ export namespace Prisma {
     sessionToken?: SortOrder
     userId?: SortOrder
     expires?: SortOrder
-  }
-
-  export type DateTimeNullableFilter = {
-    equals?: Date | string | null
-    in?: Enumerable<Date> | Enumerable<string> | null
-    notIn?: Enumerable<Date> | Enumerable<string> | null
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeNullableFilter | Date | string | null
   }
 
   export type AccountListRelationFilter = {
@@ -6711,20 +8927,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type DateTimeNullableWithAggregatesFilter = {
-    equals?: Date | string | null
-    in?: Enumerable<Date> | Enumerable<string> | null
-    notIn?: Enumerable<Date> | Enumerable<string> | null
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeNullableWithAggregatesFilter | Date | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedDateTimeNullableFilter
-    _max?: NestedDateTimeNullableFilter
-  }
-
   export type VerificationTokenIdentifierTokenCompoundUniqueInput = {
     identifier: string
     token: string
@@ -6756,7 +8958,7 @@ export namespace Prisma {
 
   export type JsonNullableFilterBase = {
     equals?: InputJsonValue | JsonNullValueFilter
-    path?: string
+    path?: Array<string>
     string_contains?: string
     string_starts_with?: string
     string_ends_with?: string
@@ -6811,7 +9013,7 @@ export namespace Prisma {
 
   export type JsonNullableWithAggregatesFilterBase = {
     equals?: InputJsonValue | JsonNullValueFilter
-    path?: string
+    path?: Array<string>
     string_contains?: string
     string_starts_with?: string
     string_ends_with?: string
@@ -6836,10 +9038,16 @@ export namespace Prisma {
     _max?: NestedBoolFilter
   }
 
-  export type UserCreateNestedOneWithoutAccountsInput = {
-    create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
-    connect?: UserWhereUniqueInput
+  export type BigIntFieldUpdateOperationsInput = {
+    set?: bigint | number
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6848,6 +9056,12 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type UserCreateNestedOneWithoutAccountsInput = {
+    create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
+    connect?: UserWhereUniqueInput
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -6924,10 +9138,6 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<PostCreateOrConnectWithoutAuthorInput>
     createMany?: PostCreateManyAuthorInputEnvelope
     connect?: Enumerable<PostWhereUniqueInput>
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -7032,6 +9242,28 @@ export namespace Prisma {
     update?: XOR<UserUpdateWithoutPostInput, UserUncheckedUpdateWithoutPostInput>
   }
 
+  export type NestedBigIntFilter = {
+    equals?: bigint | number
+    in?: Enumerable<bigint> | Enumerable<number>
+    notIn?: Enumerable<bigint> | Enumerable<number>
+    lt?: bigint | number
+    lte?: bigint | number
+    gt?: bigint | number
+    gte?: bigint | number
+    not?: NestedBigIntFilter | bigint | number
+  }
+
+  export type NestedDateTimeNullableFilter = {
+    equals?: Date | string | null
+    in?: Enumerable<Date> | Enumerable<string> | null
+    notIn?: Enumerable<Date> | Enumerable<string> | null
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeNullableFilter | Date | string | null
+  }
+
   export type NestedStringFilter = {
     equals?: string
     in?: Enumerable<string>
@@ -7046,18 +9278,56 @@ export namespace Prisma {
     not?: NestedStringFilter | string
   }
 
-  export type NestedStringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    not?: NestedStringNullableFilter | string | null
+  export type NestedBigIntWithAggregatesFilter = {
+    equals?: bigint | number
+    in?: Enumerable<bigint> | Enumerable<number>
+    notIn?: Enumerable<bigint> | Enumerable<number>
+    lt?: bigint | number
+    lte?: bigint | number
+    gt?: bigint | number
+    gte?: bigint | number
+    not?: NestedBigIntWithAggregatesFilter | bigint | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedBigIntFilter
+    _min?: NestedBigIntFilter
+    _max?: NestedBigIntFilter
+  }
+
+  export type NestedIntFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntFilter | number
+  }
+
+  export type NestedFloatFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedFloatFilter | number
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter = {
+    equals?: Date | string | null
+    in?: Enumerable<Date> | Enumerable<string> | null
+    notIn?: Enumerable<Date> | Enumerable<string> | null
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeNullableWithAggregatesFilter | Date | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedDateTimeNullableFilter
+    _max?: NestedDateTimeNullableFilter
   }
 
   export type NestedIntNullableFilter = {
@@ -7069,17 +9339,6 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntNullableFilter | number | null
-  }
-
-  export type NestedDateTimeFilter = {
-    equals?: Date | string
-    in?: Enumerable<Date> | Enumerable<string>
-    notIn?: Enumerable<Date> | Enumerable<string>
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeFilter | Date | string
   }
 
   export type NestedStringWithAggregatesFilter = {
@@ -7099,15 +9358,18 @@ export namespace Prisma {
     _max?: NestedStringFilter
   }
 
-  export type NestedIntFilter = {
-    equals?: number
-    in?: Enumerable<number>
-    notIn?: Enumerable<number>
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntFilter | number
+  export type NestedStringNullableFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    not?: NestedStringNullableFilter | string | null
   }
 
   export type NestedStringNullableWithAggregatesFilter = {
@@ -7125,6 +9387,17 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter
     _min?: NestedStringNullableFilter
     _max?: NestedStringNullableFilter
+  }
+
+  export type NestedDateTimeFilter = {
+    equals?: Date | string
+    in?: Enumerable<Date> | Enumerable<string>
+    notIn?: Enumerable<Date> | Enumerable<string>
+    lt?: Date | string
+    lte?: Date | string
+    gt?: Date | string
+    gte?: Date | string
+    not?: NestedDateTimeFilter | Date | string
   }
 
   export type NestedIntNullableWithAggregatesFilter = {
@@ -7168,31 +9441,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter
   }
 
-  export type NestedDateTimeNullableFilter = {
-    equals?: Date | string | null
-    in?: Enumerable<Date> | Enumerable<string> | null
-    notIn?: Enumerable<Date> | Enumerable<string> | null
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeNullableFilter | Date | string | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter = {
-    equals?: Date | string | null
-    in?: Enumerable<Date> | Enumerable<string> | null
-    notIn?: Enumerable<Date> | Enumerable<string> | null
-    lt?: Date | string
-    lte?: Date | string
-    gt?: Date | string
-    gte?: Date | string
-    not?: NestedDateTimeNullableWithAggregatesFilter | Date | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedDateTimeNullableFilter
-    _max?: NestedDateTimeNullableFilter
-  }
-
   export type NestedBoolFilter = {
     equals?: boolean
     not?: NestedBoolFilter | boolean
@@ -7206,7 +9454,7 @@ export namespace Prisma {
 
   export type NestedJsonNullableFilterBase = {
     equals?: InputJsonValue | JsonNullValueFilter
-    path?: string
+    path?: Array<string>
     string_contains?: string
     string_starts_with?: string
     string_ends_with?: string
