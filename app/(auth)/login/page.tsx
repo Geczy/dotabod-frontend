@@ -7,7 +7,6 @@ import { Icons } from "@/components/icons";
 import { UserAuthForm } from "@/components/user-auth-form";
 import { useEffect, useState } from "react";
 
-const socket = io("http://localhost:3000");
 
 export function fmtMSS(s) {
   return (s - (s %= 60)) / 60 + (s > 9 ? ":" : ":0") + s;
@@ -15,15 +14,22 @@ export function fmtMSS(s) {
 
 export default function LoginPage() {
   useEffect(() => {
-    const handler = (msg: string) => {
-      console.log("Game time: " + fmtMSS(msg));
-    };
+const socket = io("http://localhost:3000", { auth: { token: "123456" } });
 
-    socket.on("map:clock_time", handler);
+const handler = (msg: string) => {
+  console.log("Game time: " + fmtMSS(msg));
+};
 
-    return () => {
-      socket.off("map:clock_time");
-    };
+socket.on("map:clock_time", handler);
+
+socket.on("connect_error", (err) => {
+  console.log(err.message); // prints the message associated with the error
+});
+
+return () => {
+  socket.off("map:clock_time");
+  socket.off("connect_error");
+};
   }, []);
 
   return (
