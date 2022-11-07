@@ -5,22 +5,23 @@ import { getSession } from "@/lib/session"
 import { DashboardHeader } from "@/components/dashboard-header"
 import { DashboardShell } from "@/components/dashboard-shell"
 import { UserNameForm } from "@/components/user-name-form"
+import { useSession } from "next-auth/react";
 
 async function getUser() {
-  const session = await getSession(headers().get("cookie"))
+  const session = await getSession(headers().get("cookie"));
 
   if (!session?.user) {
-    return null
+    return null;
   }
 
-  return session.user
+  return session.user;
 }
 
 export default async function SettingsPage() {
-  const user = await getUser()
+  const { data: session, status } = useSession();
 
-  if (!user) {
-    notFound()
+  if (!session.user) {
+    notFound();
   }
 
   return (
@@ -30,8 +31,8 @@ export default async function SettingsPage() {
         text="Manage account and website settings."
       />
       <div className="grid gap-10">
-        <UserNameForm user={{ id: user.id, name: user.name }} />
+        <UserNameForm user={{ id: session.user.id, name: session.user.name }} />
       </div>
     </DashboardShell>
-  )
+  );
 }

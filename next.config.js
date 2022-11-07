@@ -7,8 +7,8 @@ const nextConfig = {
   experimental: {
     appDir: true,
     newNextLinkBehavior: true,
-    serverComponentsExternalPackages: ["prisma"],
-  },
+    serverComponentsExternalPackages: ["@prisma/client"],
+    },
 };
 
 module.exports = nextConfig
