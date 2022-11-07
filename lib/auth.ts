@@ -3,6 +3,7 @@ import { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import { PrismaClient } from "@/lib/prisma";
+import { db } from '@/lib/db'
 
 const prisma = new PrismaClient();
 
