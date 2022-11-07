@@ -26,7 +26,7 @@ async function getPostsForUser(userId: User["id"]) {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser()
-  const posts = await getPostsForUser(user.id)
+  const posts = await getPostsForUser(user?.id)
 
   return (
     <DashboardShell>
