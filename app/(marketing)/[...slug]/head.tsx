@@ -5,10 +5,10 @@ export default async function Head({ params }) {
 
   return (
     <>
-      <title>{page.frontMatter.title}</title>
-      {page.frontMatter.excerpt && (
+      <title>{page?.frontMatter?.title}</title>
+      {page?.frontMatter?.excerpt && (
         <meta name="description" content={page.frontMatter.excerpt} />
       )}
     </>
-  )
+  );
 }
