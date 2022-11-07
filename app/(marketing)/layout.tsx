@@ -1,16 +1,14 @@
 import { Icons } from "@/components/icons"
-import { UserAccountNav } from "@/components/user-account-nav";
-import { getUser } from "app/(dashboard)/dashboard/layout";
-import Link from "next/link";
+import { UserAccountNav } from '@/components/user-account-nav'
+import { getCurrentUser } from '@/lib/session'
+import Link from 'next/link'
 
 interface MarketingLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-export default async function MarketingLayout({
-  children,
-}: MarketingLayoutProps) {
-  const user = await getUser();
+export default async function MarketingLayout({ children }: MarketingLayoutProps) {
+  const user = await getCurrentUser()
 
   return (
     <div className="mx-auto w-full px-4">
@@ -42,5 +40,5 @@ export default async function MarketingLayout({
       </header>
       <main>{children}</main>
     </div>
-  );
+  )
 }
