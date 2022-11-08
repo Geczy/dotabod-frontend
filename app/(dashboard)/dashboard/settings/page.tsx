@@ -5,9 +5,9 @@ import { authOptions } from "@/lib/auth"
 import { DashboardHeader } from "@/components/dashboard-header"
 import { DashboardShell } from "@/components/dashboard-shell"
 import { UserNameForm } from "@/components/user-name-form"
-import { Suspense } from "react"
-
-const shimmer = `relative overflow-hidden rounded-xl before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent`
+import { SceneSwitcher } from "./SceneSwitcher"
+import { MinimapCard } from "./MinimapCard"
+import { PicksCard } from "./PicksCard"
 
 export default async function SettingsPage() {
   const user = await getCurrentUser()
@@ -19,8 +19,11 @@ export default async function SettingsPage() {
   return (
     <DashboardShell>
       <DashboardHeader heading="Settings" text="Manage account and website settings." />
-      <div className="grid gap-10">
+      <div className="grid gap-10 mb-11">
         <UserNameForm user={{ id: user?.id, name: user?.name }} />
+        <SceneSwitcher />
+        <MinimapCard />
+        <PicksCard />
       </div>
     </DashboardShell>
   )

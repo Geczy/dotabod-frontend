@@ -15,12 +15,12 @@ export type NavigationItem = {
 
 export const navigationItems: NavigationItem[] = [
   {
-    title: "General",
+    title: "Setup",
     href: "/dashboard",
     icon: Icons.post,
   },
   {
-    title: "Settings",
+    title: "Options",
     href: "/dashboard/settings",
     icon: Icons.settings,
   },

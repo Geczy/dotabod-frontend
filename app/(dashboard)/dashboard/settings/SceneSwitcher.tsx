@@ -1,8 +1,8 @@
 "use client"
 import { Card } from "@/ui/card"
 import { cn } from "@/lib/utils"
-import Image from "next/image"
 import { Code } from "@mantine/core"
+import Image from "next/image"
 
 export function SceneSwitcher(): JSX.Element {
   return (
@@ -10,19 +10,26 @@ export function SceneSwitcher(): JSX.Element {
       <Card.Header>
         <Card.Title>Automatic Scene Switcher</Card.Title>
         <Card.Description className="space-y-2">
-          <div>
-            Will attempt to switch scenes in OBS. Must set browser properties to{" "}
-            <span className="italics">Advanced access to OBS</span>
-          </div>
-          <div>
-            Must have two scenes titled <Code>[dotabod] playing</Code> and{" "}
-            <Code>[dotabod] disconnected</Code>
-          </div>
-          <div>The dotabod browser source must be present in both scenes.</div>
+          Will attempt to auto switch scenes in OBS.
         </Card.Description>
       </Card.Header>
       <Card.Content>
-        <Image alt="scene switcher" width={1227} height={314} src="/images/scene-switcher.png" />
+        <p>
+          Must set browser properties to <span className="italics">Advanced access to OBS</span>
+        </p>
+        <p>
+          Must have two scenes titled <Code>[dotabod] playing</Code> and{" "}
+          <Code>[dotabod] disconnected</Code>
+        </p>
+        <p>The dotabod browser source must be present in both scenes.</p>
+
+        <Image
+          alt="scene switcher"
+          className="max-h-52 w-auto mt-6"
+          width={1227}
+          height={314}
+          src="/images/scene-switcher.png"
+        />
       </Card.Content>
       <Card.Footer>
         <button
