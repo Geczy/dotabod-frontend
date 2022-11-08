@@ -65,7 +65,7 @@ export default function OverlayPage({ params }) {
       )}
 
       {isPicksBlocked && (
-        <Image alt="picks blocker" width={3840} height={2160} src="/images/picker-overlay.png" />
+        <Image alt="picks blocker" width={1920} height={1080} src="/images/picker-overlay.png" />
       )}
     </div>
   )
