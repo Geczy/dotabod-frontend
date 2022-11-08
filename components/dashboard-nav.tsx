@@ -20,11 +20,6 @@ export const navigationItems: NavigationItem[] = [
     icon: Icons.post,
   },
   {
-    title: "Overlays",
-    href: "/dashboard/overlays",
-    icon: Icons.media,
-  },
-  {
     title: "Settings",
     href: "/dashboard/settings",
     icon: Icons.settings,
