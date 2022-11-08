@@ -1,15 +1,15 @@
-'use client'
+"use client"
 
-import * as React from 'react'
-import { signIn } from 'next-auth/react'
-import * as z from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import * as React from "react"
+import { signIn } from "next-auth/react"
+import * as z from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
-import { cn } from '@/lib/utils'
-import { userAuthSchema } from '@/lib/validations/auth'
-import toast from '@/ui/toast'
-import { Icons } from '@/components/icons'
+import { cn } from "@/lib/utils"
+import { userAuthSchema } from "@/lib/validations/auth"
+import toast from "@/ui/toast"
+import { Icons } from "@/components/icons"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -26,13 +26,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   return (
-    <div className={cn('grid gap-6', className)} {...props}>
+    <div className={cn("grid gap-6", className)} {...props}>
       <button
         type="button"
         className="inline-flex w-full items-center justify-center rounded-lg border bg-white px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-slate-100 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50 disabled:opacity-50 dark:hover:bg-[#050708]/30 dark:focus:ring-slate-500"
         onClick={() => {
           setIsLoading(true)
-          signIn('twitch')
+          signIn("twitch")
         }}
         disabled={isLoading}
       >

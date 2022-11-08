@@ -1,11 +1,11 @@
-import { promises as fs } from 'fs'
-import hasha from 'hasha'
-import glob from 'fast-glob'
-import path from 'path'
-import NodeCache from 'node-cache'
-import { VFile } from 'vfile'
-import { matter } from 'vfile-matter'
-import * as z from 'zod'
+import { promises as fs } from "fs"
+import hasha from "hasha"
+import glob from "fast-glob"
+import path from "path"
+import NodeCache from "node-cache"
+import { VFile } from "vfile"
+import { matter } from "vfile-matter"
+import * as z from "zod"
 
 const mdxCache = new NodeCache()
 
@@ -13,7 +13,7 @@ export interface Source<T> {
   contentPath: string
   basePath: string
   sortBy?: string
-  sortOrder?: 'asc' | 'desc'
+  sortOrder?: "asc" | "desc"
   frontMatter: T
 }
 
@@ -40,22 +40,22 @@ export function createSource<T extends z.ZodType>(source: Source<T>) {
 
     return files.map((filepath) => {
       let slug = filepath
-        .replace(contentPath, '')
-        .replace(/^\/+/, '')
-        .replace(new RegExp(path.extname(filepath) + '$'), '')
+        .replace(contentPath, "")
+        .replace(/^\/+/, "")
+        .replace(new RegExp(path.extname(filepath) + "$"), "")
 
-      slug = slug.replace(/\/?index$/, '')
+      slug = slug.replace(/\/?index$/, "")
 
       return {
         filepath,
         slug,
-        url: `${basePath?.replace(/\/$/, '')}/${slug}`,
+        url: `${basePath?.replace(/\/$/, "")}/${slug}`,
       }
     })
   }
 
   async function getFileData(file: MdxFile): Promise<MdxFileData<z.infer<T>>> {
-    const raw = await fs.readFile(file.filepath, 'utf-8')
+    const raw = await fs.readFile(file.filepath, "utf-8")
     const hash = hasha(raw.toString())
 
     const cachedContent = mdxCache.get<MdxFileData<z.infer<T>>>(hash)
@@ -86,7 +86,7 @@ export function createSource<T extends z.ZodType>(source: Source<T>) {
   }
 
   async function getMdxNode(slug: string | string[]) {
-    const _slug = Array.isArray(slug) ? slug.join('/') : slug
+    const _slug = Array.isArray(slug) ? slug.join("/") : slug
 
     const files = await getMdxFiles()
 
@@ -115,7 +115,7 @@ export function createSource<T extends z.ZodType>(source: Source<T>) {
       }),
     )
 
-    const adjust = sortOrder === 'desc' ? -1 : 1
+    const adjust = sortOrder === "desc" ? -1 : 1
     return nodes.sort((a, b) => {
       if (a.frontMatter[sortBy] < b.frontMatter[sortBy]) {
         return -1 * adjust

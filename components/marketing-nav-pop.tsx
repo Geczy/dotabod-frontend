@@ -1,15 +1,15 @@
-'use client'
+"use client"
 
-import Image from 'next/image'
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
+import Image from "next/image"
+import { Fragment } from "react"
+import { Popover, Transition } from "@headlessui/react"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import Link from "next/link"
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Dashboard', href: '/dashboard' },
+  { name: "Product", href: "#" },
+  { name: "Features", href: "#" },
+  { name: "Dashboard", href: "/dashboard" },
 ]
 
 export default function MarketingNavPop() {

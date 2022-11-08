@@ -1,26 +1,26 @@
-'use client'
+"use client"
 
-import * as React from 'react'
-import { useRouter } from 'next/navigation'
-import { Post } from '@/lib/prisma'
+import * as React from "react"
+import { useRouter } from "next/navigation"
+import { Post } from "@/lib/prisma"
 
-import { cn } from '@/lib/utils'
-import { Icons } from '@/components/icons'
-import toast from '@/ui/toast'
+import { cn } from "@/lib/utils"
+import { Icons } from "@/components/icons"
+import toast from "@/ui/toast"
 
-async function createPost(): Promise<Pick<Post, 'id'>> {
-  const response = await fetch('/api/posts', {
-    method: 'POST',
+async function createPost(): Promise<Pick<Post, "id">> {
+  const response = await fetch("/api/posts", {
+    method: "POST",
     body: JSON.stringify({
-      title: 'Untitled Post',
+      title: "Untitled Post",
     }),
   })
 
   if (!response?.ok) {
     toast({
-      title: 'Something went wrong.',
-      message: 'Your post was not created. Please try again.',
-      type: 'error',
+      title: "Something went wrong.",
+      message: "Your post was not created. Please try again.",
+      type: "error",
     })
   }
 
@@ -48,9 +48,9 @@ export function PostCreateButton({ className, ...props }: PostCreateButtonProps)
     <button
       onClick={onClick}
       className={cn(
-        'relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2',
+        "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
         {
-          'cursor-not-allowed opacity-60': isLoading,
+          "cursor-not-allowed opacity-60": isLoading,
         },
         className,
       )}

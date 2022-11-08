@@ -1,10 +1,10 @@
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
+import { notFound } from "next/navigation"
+import Link from "next/link"
 
-import { getCurrentUser } from '@/lib/session'
-import { DashboardNav } from '@/components/dashboard-nav'
-import { UserAccountNav } from '@/components/user-account-nav'
-import Image from 'next/image'
+import { getCurrentUser } from "@/lib/session"
+import { DashboardNav } from "@/components/dashboard-nav"
+import { UserAccountNav } from "@/components/user-account-nav"
+import Image from "next/image"
 
 interface DashboardLayoutProps {
   children?: React.ReactNode

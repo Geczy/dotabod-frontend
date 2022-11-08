@@ -1,9 +1,9 @@
-import TwitchProvider from 'next-auth/providers/twitch'
-import { NextAuthOptions } from 'next-auth'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import TwitchProvider from "next-auth/providers/twitch"
+import { NextAuthOptions } from "next-auth"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
 
-import { PrismaClient } from '@/lib/prisma'
-import { db } from '@/lib/db'
+import { PrismaClient } from "@/lib/prisma"
+import { db } from "@/lib/db"
 
 const prisma = new PrismaClient()
 
@@ -13,10 +13,10 @@ export const authOptions: NextAuthOptions = {
   // @see https://github.com/prisma/prisma/issues/16117
   adapter: PrismaAdapter(prisma as any),
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   pages: {
-    signIn: '/login',
+    signIn: "/login",
   },
   providers: [
     TwitchProvider({

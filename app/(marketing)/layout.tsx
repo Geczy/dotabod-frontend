@@ -1,4 +1,4 @@
-import MarketingNavPop from '@/components/marketing-nav-pop'
+import MarketingNavPop from "@/components/marketing-nav-pop"
 
 interface MarketingLayoutProps {
   children: React.ReactNode

@@ -1,14 +1,14 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import * as z from 'zod'
-import { getSession } from 'next-auth/react'
+import { NextApiRequest, NextApiResponse } from "next"
+import * as z from "zod"
+import { getSession } from "next-auth/react"
 
-import { db } from '@/lib/db'
-import { withMethods } from '@/lib/api-middlewares/with-methods'
-import { withCurrentUser } from '@/lib/api-middlewares/with-current-user'
-import { userNameSchema } from '@/lib/validations/user'
+import { db } from "@/lib/db"
+import { withMethods } from "@/lib/api-middlewares/with-methods"
+import { withCurrentUser } from "@/lib/api-middlewares/with-current-user"
+import { userNameSchema } from "@/lib/validations/user"
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'PATCH') {
+  if (req.method === "PATCH") {
     try {
       const session = await getSession({ req })
       const user = session?.user
@@ -40,4 +40,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default withMethods(['PATCH'], withCurrentUser(handler))
+export default withMethods(["PATCH"], withCurrentUser(handler))

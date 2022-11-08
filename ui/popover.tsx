@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import * as React from 'react'
-import * as PopoverPrimitive from '@radix-ui/react-popover'
+import * as React from "react"
+import * as PopoverPrimitive from "@radix-ui/react-popover"
 
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils"
 
 type PopoverProps = PopoverPrimitive.PopoverProps
 
@@ -26,7 +26,7 @@ Popover.Content = React.forwardRef<HTMLDivElement, PopoverPrimitive.PopoverConte
         ref={ref}
         align="end"
         className={cn(
-          'overflow-hidden rounded-md border border-slate-50 bg-white shadow-md animate-in slide-in-from-top-1',
+          "overflow-hidden rounded-md border border-slate-50 bg-white shadow-md animate-in slide-in-from-top-1",
           className,
         )}
         {...props}

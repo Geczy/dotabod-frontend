@@ -1,10 +1,10 @@
-'use client'
+"use client"
 
-import { Popover } from '@/ui/popover'
-import { Icons } from '@/components/icons'
+import { Popover } from "@/ui/popover"
+import { Icons } from "@/components/icons"
 
-import OgImage from 'public/og.jpg'
-import Image from 'next/image'
+import OgImage from "public/og.jpg"
+import Image from "next/image"
 
 export function Help() {
   return (
@@ -17,7 +17,7 @@ export function Help() {
           <Image src={OgImage} alt="Screenshot" className="overflow-hidden rounded-sm" />
           <p>This app is a work in progress. I&apos;m building this in public.</p>
           <p>
-            You can follow the progress on Twitter{' '}
+            You can follow the progress on Twitter{" "}
             <a
               href="https://twitter.com/shadcn"
               target="_blank"
@@ -25,8 +25,8 @@ export function Help() {
               className="border-b border-b-white"
             >
               @shadcn
-            </a>{' '}
-            or on{' '}
+            </a>{" "}
+            or on{" "}
             <a
               href="https://github.com/shadcn/taxonomy"
               target="_blank"
