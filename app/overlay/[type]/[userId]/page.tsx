@@ -5,20 +5,19 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import { useSearchParams } from "next/navigation"
 
-export default function OverlayPage() {
+export default function OverlayPage({ params, searchParams }) {
   const [gameTime, setGameTime] = useState("Game time: 0:00")
   const [showMinimap, setShowMinimap] = useState(false)
   const [showPickerOverlay, setShowPickerOverlay] = useState(false)
-  const searchParams = useSearchParams()
 
   function fmtMSS(s) {
     return (s - (s %= 60)) / 60 + (s > 9 ? ":" : ":0") + s
   }
 
   useEffect(() => {
-    if (!searchParams.get("id")) return
+    if (!params?.id) return
 
-    const socket = io("https://dotabod.lunars.dev/", { auth: { token: searchParams.get("id") } })
+    const socket = io("https://dotabod.lunars.dev/", { auth: { token: params?.id } })
 
     function handleMinimapOverlay(msg: string) {
       if (
@@ -74,14 +73,14 @@ export default function OverlayPage() {
       socket.off("map:game_state")
       socket.off("connect_error")
     }
-  }, [searchParams, showMinimap, showPickerOverlay])
+  }, [params, showMinimap, showPickerOverlay])
 
   return (
     <div>
-      {showMinimap && searchParams.get("minimap") ? (
+      {showMinimap && params?.minimap ? (
         <Image alt="minimap blocker" width={280} height={279} src="/images/minimap_full.png" />
       ) : null}
-      {showPickerOverlay && searchParams.get("picks") ? (
+      {showPickerOverlay && params?.picks ? (
         <Image alt="minimap blocker" width={3840} height={2160} src="/images/picker-overlay.png" />
       ) : null}
     </div>

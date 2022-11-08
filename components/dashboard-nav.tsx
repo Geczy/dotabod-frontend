@@ -15,21 +15,14 @@ export type NavigationItem = {
 
 export const navigationItems: NavigationItem[] = [
   {
-    title: "Posts",
+    title: "General",
     href: "/dashboard",
     icon: Icons.post,
   },
   {
-    title: "Pages",
-    href: "#",
-    icon: Icons.page,
-    disabled: true,
-  },
-  {
-    title: "Media",
-    href: "#",
+    title: "Overlays",
+    href: "/dashboard/overlays",
     icon: Icons.media,
-    disabled: true,
   },
   {
     title: "Settings",

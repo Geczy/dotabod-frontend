@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import { getSession } from "next-auth/react"
 import * as z from "zod"
 
 import { db } from "@/lib/db"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withAuthentication } from "@/lib/api-middlewares/with-authentication"
+import { unstable_getServerSession } from "next-auth"
 
 const postCreateSchema = z.object({
   title: z.string().optional(),
@@ -12,7 +12,7 @@ const postCreateSchema = z.object({
 })
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getSession({ req })
+  const session = await unstable_getServerSession({ req })
 
   if (req.method === "GET") {
     try {

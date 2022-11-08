@@ -13,3 +13,12 @@ export function formatDate(input: string): string {
     year: "numeric",
   })
 }
+
+export const getBaseUrl = (append?: string) => {
+  const isProduction = process.env.NODE_ENV === "production"
+  const vercelPublicDomain = process.env.NEXT_PUBLIC_DOMAIN
+  const prodURL = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  const base = vercelPublicDomain || (isProduction ? prodURL : "http://localhost:3001/")
+
+  return append ? `${base}${append}` : base
+}
