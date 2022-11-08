@@ -5,7 +5,7 @@ import { cn, getBaseUrl } from "@/lib/utils"
 import { CopyButton, Tooltip } from "@mantine/core"
 import { IconCopy, IconCheck } from "@tabler/icons"
 import Image from "next/image"
-import { useSession } from "next-auth/react"
+import { Code } from "@mantine/core"
 
 export default function OverlayCopies({ user }) {
   return (
@@ -36,7 +36,16 @@ function MinimapCard() {
           src="/images/731-Complex-Large-AntiStreamSnipeMap.png"
         />
       </Card.Content>
-      <Card.Footer>Enable | Disable</Card.Footer>
+      <Card.Footer>
+        <button
+          disabled
+          className={cn(
+            "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-normal text-white hover:bg-brand-400 disabled:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
+          )}
+        >
+          Disable
+        </button>
+      </Card.Footer>
     </Card>
   )
 }
@@ -48,15 +57,31 @@ function SceneSwitcher({ user }) {
     <Card>
       <Card.Header>
         <Card.Title>Automatic Scene Switcher</Card.Title>
-        <Card.Description>
-          Will attempt to switch scenes in OBS. Must set browser properties to{" "}
-          <span className="italics">Advanced access to OBS</span>
+        <Card.Description className="space-y-2">
+          <div>
+            Will attempt to switch scenes in OBS. Must set browser properties to{" "}
+            <span className="italics">Advanced access to OBS</span>
+          </div>
+          <div>
+            Must have two scenes titled <Code>[dotabod] playing</Code> and{" "}
+            <Code>[dotabod] disconnected</Code>
+          </div>
+          <div>The dotabod browser source must be present in both scenes.</div>
         </Card.Description>
       </Card.Header>
       <Card.Content>
-        <Image alt="scene blocker" width={1227} height={314} src="/images/scene-switcher.png" />
+        <Image alt="scene switcher" width={1227} height={314} src="/images/scene-switcher.png" />
       </Card.Content>
-      <Card.Footer>Enable | Disable</Card.Footer>
+      <Card.Footer>
+        <button
+          disabled
+          className={cn(
+            "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-normal text-white hover:bg-brand-400 disabled:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
+          )}
+        >
+          Disable
+        </button>
+      </Card.Footer>
     </Card>
   )
 }
@@ -78,7 +103,16 @@ function PicksCard() {
           src="/images/block-radiant-picks.png"
         />
       </Card.Content>
-      <Card.Footer>Enable | Disable</Card.Footer>
+      <Card.Footer>
+        <button
+          disabled
+          className={cn(
+            "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-normal text-white hover:bg-brand-400 disabled:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
+          )}
+        >
+          Disable
+        </button>
+      </Card.Footer>
     </Card>
   )
 }
@@ -117,7 +151,7 @@ function OverlayURL({ user }) {
               <button
                 onClick={copy}
                 className={cn(
-                  "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-normal text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
+                  "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-normal text-white hover:bg-brand-400 disabled:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
                 )}
               >
                 {copyURL}
@@ -127,8 +161,8 @@ function OverlayURL({ user }) {
         </CopyButton>
 
         <Image
-          className="mt-6"
-          alt="picks blocker"
+          className="mt-6 max-h-96 w-auto"
+          alt="obs overlay"
           width={949}
           height={633}
           src="/images/dotabod-obs-config.png"
