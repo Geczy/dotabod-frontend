@@ -1,37 +1,10 @@
-'use client'
-
 import Link from 'next/link'
-import io from 'socket.io-client'
 
 import Image from 'next/image'
 import { Icons } from '@/components/icons'
 import { UserAuthForm } from '@/components/user-auth-form'
-import { useEffect, useState } from 'react'
-
-export function fmtMSS(s) {
-  return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s
-}
 
 export default function LoginPage() {
-  useEffect(() => {
-    const socket = io('http://localhost:3000', { auth: { token: '123456' } })
-
-    const handler = (msg: string) => {
-      console.log('Game time: ' + fmtMSS(msg))
-    }
-
-    socket.on('map:clock_time', handler)
-
-    socket.on('connect_error', (err) => {
-      console.log(err.message) // prints the message associated with the error
-    })
-
-    return () => {
-      socket.off('map:clock_time')
-      socket.off('connect_error')
-    }
-  }, [])
-
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center">
       <Link
