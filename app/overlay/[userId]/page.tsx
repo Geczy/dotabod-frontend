@@ -5,8 +5,17 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 
 let socket
+
+const PickBlocker = ({ teamName }) =>
+  teamName === "radiant" ? (
+    <Image alt="picks blocker" width={1920} height={1080} src="/images/block-radiant-picks.png" />
+  ) : (
+    <Image alt="picks blocker" width={1920} height={1080} src="/images/block-dire-picks.png" />
+  )
+
 export default function OverlayPage({ params }) {
   const [gameState, setGameState] = useState("DISCONNECTED")
+  const [teamName, setTeamName] = useState("")
 
   const minimapStates = ["DOTA_GAMERULES_STATE_GAME_IN_PROGRESS", "DOTA_GAMERULES_STATE_PRE_GAME"]
   const isMinimapBlocked = minimapStates.includes(gameState)
@@ -23,6 +32,7 @@ export default function OverlayPage({ params }) {
 
     socket.on("state", setGameState)
     socket.on("map:game_state", setGameState)
+    socket.on("player:team_name", setTeamName)
 
     socket.on("connect_error", (err) => {
       console.log(err.message)
@@ -64,9 +74,7 @@ export default function OverlayPage({ params }) {
         </div>
       )}
 
-      {isPicksBlocked && (
-        <Image alt="picks blocker" width={1920} height={1080} src="/images/picker-overlay.png" />
-      )}
+      {isPicksBlocked && <PickBlocker teamName={teamName} />}
     </div>
   )
 }
