@@ -4,7 +4,7 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
-  binaryTargets   = ["native", "windows"]
+  binaryTargets   = ["native", "windows", "rhel-openssl-1.0.x"]
   output          = "./"
 }
 
