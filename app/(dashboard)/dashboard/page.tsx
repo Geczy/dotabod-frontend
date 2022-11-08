@@ -16,7 +16,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="Overlays" text="Browser overlays for your OBS." />
+      <DashboardHeader heading="Setup" text="Browser overlays for your OBS." />
       <div className="grid gap-10 mb-11">
         <div className="space-y-12">
           <ExportCFG user={user} />

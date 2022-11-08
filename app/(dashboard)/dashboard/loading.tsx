@@ -5,7 +5,7 @@ import { Card } from "@/ui/card"
 export default function DashboardOverlaysLoading() {
   return (
     <DashboardShell>
-      <DashboardHeader heading="Overlays" text="Browser overlays for your OBS." />
+      <DashboardHeader heading="Setup" text="Browser overlays for your OBS." />
       <div className="grid gap-10">
         <Card.Skeleton />
         <Card.Skeleton />

@@ -45,7 +45,7 @@ export function ExportCFG({ user }) {
           Place in{" "}
           <Code>
             C:\Program Files (x86)\Steam\steamapps\common\dota 2
-            beta\game\dota\cfg\gamestate_integration
+            beta\game\dota\cfg\gamestate_integration\
           </Code>
           <div>Restart your Dota 2 client after saving the file.</div>
         </div>

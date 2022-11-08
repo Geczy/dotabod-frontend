@@ -60,7 +60,7 @@ export default function OverlayPage({ params }) {
   }, [])
 
   return (
-    <div>
+    <>
       {isMinimapBlocked && (
         <div className="absolute bottom-0 left-0">
           <Image
@@ -73,6 +73,6 @@ export default function OverlayPage({ params }) {
       )}
 
       {isPicksBlocked && <PickBlocker teamName={teamName} />}
-    </div>
+    </>
   )
 }
