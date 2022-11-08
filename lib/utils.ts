@@ -15,10 +15,6 @@ export function formatDate(input: string): string {
 }
 
 export const getBaseUrl = (append?: string) => {
-  const isProduction = process.env.NODE_ENV === "production"
-  const vercelPublicDomain = process.env.NEXT_PUBLIC_DOMAIN
-  const prodURL = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-  const base = vercelPublicDomain || (isProduction ? prodURL : "http://localhost:3001/")
-
-  return append ? `${base}${append}` : base
+  const base = window.location.protocol + "//" + window.location.host
+  return append ? `${base}/${append}` : base
 }
