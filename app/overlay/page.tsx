@@ -3,30 +3,27 @@
 import io from 'socket.io-client'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 
-export function fmtMSS(s) {
-  return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s
-}
-
-export default function OverlayPage({
-  searchParams,
-}: {
-  searchParams: { id: string; minimap: boolean; picks: true }
-}) {
+export default function OverlayPage() {
   const [gameTime, setGameTime] = useState('Game time: 0:00')
   const [showMinimap, setShowMinimap] = useState(false)
   const [showPickerOverlay, setShowPickerOverlay] = useState(false)
+  const searchParams = useSearchParams()
+
+  function fmtMSS(s) {
+    return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s
+  }
 
   useEffect(() => {
-    if (!searchParams?.id) return
+    if (!searchParams.get('id')) return
 
-    const socket = io('https://dotabod.lunars.dev/', { auth: { token: searchParams.id } })
+    const socket = io('https://dotabod.lunars.dev/', { auth: { token: searchParams.get('id') } })
 
     function handleMinimapOverlay(msg: string) {
       if (
         !showPickerOverlay &&
         (msg === 'DOTA_GAMERULES_STATE_HERO_SELECTION' ||
-          msg === 'DOTA_GAMERULES_STATE_PRE_GAME' ||
           msg === 'DOTA_GAMERULES_STATE_STRATEGY_TIME')
       ) {
         setShowPickerOverlay(true)
@@ -35,15 +32,20 @@ export default function OverlayPage({
       if (
         showPickerOverlay &&
         msg !== 'DOTA_GAMERULES_STATE_HERO_SELECTION' &&
-        msg !== 'DOTA_GAMERULES_STATE_PRE_GAME' &&
         msg !== 'DOTA_GAMERULES_STATE_STRATEGY_TIME'
       ) {
         setShowPickerOverlay(false)
       }
 
-      if (!showMinimap && msg === 'DOTA_GAMERULES_STATE_GAME_IN_PROGRESS') {
+      if (
+        (!showMinimap && msg === 'DOTA_GAMERULES_STATE_GAME_IN_PROGRESS') ||
+        msg === 'DOTA_GAMERULES_STATE_PRE_GAME'
+      ) {
         setShowMinimap(true)
-      } else if (showMinimap && msg !== 'DOTA_GAMERULES_STATE_GAME_IN_PROGRESS') {
+      } else if (
+        (showMinimap && msg !== 'DOTA_GAMERULES_STATE_GAME_IN_PROGRESS') ||
+        msg !== 'DOTA_GAMERULES_STATE_PRE_GAME'
+      ) {
         setShowMinimap(false)
       }
     }
@@ -72,14 +74,14 @@ export default function OverlayPage({
       socket.off('map:game_state')
       socket.off('connect_error')
     }
-  }, [showMinimap, searchParams?.id, showPickerOverlay])
+  }, [searchParams, showMinimap, showPickerOverlay])
 
   return (
     <div>
-      {showMinimap && searchParams.minimap ? (
+      {showMinimap && searchParams.get('minimap') ? (
         <Image alt="minimap blocker" width={280} height={279} src="/images/minimap_full.png" />
       ) : null}
-      {showPickerOverlay && searchParams.picks ? (
+      {showPickerOverlay && searchParams.get('picks') ? (
         <Image alt="minimap blocker" width={3840} height={2160} src="/images/picker-overlay.png" />
       ) : null}
     </div>
