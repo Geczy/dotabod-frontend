@@ -18,7 +18,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   }
 
   return (
-    <div className="mx-auto flex h-screen max-w-[1440px] flex-col space-y-6 overflow-hidden px-6">
+    <div className="mx-auto flex h-full max-w-[1440px] flex-col space-y-6 overflow-hidden px-6">
       <header className="flex h-[64px] items-center justify-between pl-2">
         <Link href="/" className="flex items-center space-x-2">
           <Image

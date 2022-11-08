@@ -6,9 +6,7 @@ import { PostItem } from "@/components/post-item"
 export default function DashboardLoading() {
   return (
     <DashboardShell>
-      <DashboardHeader heading="Posts" text="Create and manage posts.">
-        <PostCreateButton />
-      </DashboardHeader>
+      <DashboardHeader heading="General" text="Random items for your stream." />
       <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
         <PostItem.Skeleton />
         <PostItem.Skeleton />

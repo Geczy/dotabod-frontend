@@ -17,7 +17,7 @@ export default async function SettingsPage() {
     <DashboardShell>
       <DashboardHeader heading="Overlays" text="Browser overlays for your OBS." />
       <div className="grid gap-10">
-        <OverlayCopies />
+        <OverlayCopies user={user} />
       </div>
     </DashboardShell>
   )

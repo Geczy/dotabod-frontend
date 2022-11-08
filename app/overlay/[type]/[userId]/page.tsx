@@ -5,84 +5,57 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import { useSearchParams } from "next/navigation"
 
+let socket
 export default function OverlayPage({ params, searchParams }) {
-  const [gameTime, setGameTime] = useState("Game time: 0:00")
-  const [showMinimap, setShowMinimap] = useState(false)
-  const [showPickerOverlay, setShowPickerOverlay] = useState(false)
-
-  function fmtMSS(s) {
-    return (s - (s %= 60)) / 60 + (s > 9 ? ":" : ":0") + s
-  }
+  const [gameState, setGameState] = useState("")
 
   useEffect(() => {
-    if (!params?.id) return
+    if (!params?.userId) return
 
-    const socket = io("https://dotabod.lunars.dev/", { auth: { token: params?.id } })
-
-    function handleMinimapOverlay(msg: string) {
-      if (
-        !showPickerOverlay &&
-        (msg === "DOTA_GAMERULES_STATE_HERO_SELECTION" ||
-          msg === "DOTA_GAMERULES_STATE_STRATEGY_TIME")
-      ) {
-        setShowPickerOverlay(true)
-      }
-
-      if (
-        showPickerOverlay &&
-        msg !== "DOTA_GAMERULES_STATE_HERO_SELECTION" &&
-        msg !== "DOTA_GAMERULES_STATE_STRATEGY_TIME"
-      ) {
-        setShowPickerOverlay(false)
-      }
-
-      if (
-        (!showMinimap && msg === "DOTA_GAMERULES_STATE_GAME_IN_PROGRESS") ||
-        msg === "DOTA_GAMERULES_STATE_PRE_GAME"
-      ) {
-        setShowMinimap(true)
-      } else if (
-        (showMinimap && msg !== "DOTA_GAMERULES_STATE_GAME_IN_PROGRESS") ||
-        msg !== "DOTA_GAMERULES_STATE_PRE_GAME"
-      ) {
-        setShowMinimap(false)
-      }
-    }
-
-    socket.on("map:clock_time", (msg: string) => {
-      // setGameTime('Game time: ' + fmtMSS(msg))
+    socket = io(process.env.NEXT_PUBLIC_GSI_WEBSOCKET_URL, {
+      auth: { token: params?.userId },
     })
 
-    socket.on("state", (msg) => {
-      handleMinimapOverlay(msg)
-    })
-
-    socket.on("map:game_state", (msg) => {
-      console.log("Game state: " + msg)
-
-      handleMinimapOverlay(msg)
-    })
+    socket.on("state", setGameState)
+    socket.on("map:game_state", setGameState)
 
     socket.on("connect_error", (err) => {
       console.log(err.message)
     })
+  }, [params?.userId])
 
+  useEffect(() => {
     return () => {
-      socket.off("state")
-      socket.off("map:clock_time")
-      socket.off("map:game_state")
-      socket.off("connect_error")
+      socket?.off("state")
+      socket?.off("map:game_state")
+      socket?.off("player:team_name")
+      socket?.off("connect_error")
+      socket?.disconnect()
     }
-  }, [params, showMinimap, showPickerOverlay])
+  }, [])
+
+  const minimapStates = ["DOTA_GAMERULES_STATE_GAME_IN_PROGRESS", "DOTA_GAMERULES_STATE_PRE_GAME"]
+  const isMinimapBlocked = minimapStates.includes(gameState) && params?.type === "minimap"
+
+  const pickSates = ["DOTA_GAMERULES_STATE_HERO_SELECTION", "DOTA_GAMERULES_STATE_STRATEGY_TIME"]
+  const isPicksBlocked = pickSates.includes(gameState) && params?.type === "picks"
 
   return (
     <div>
-      {showMinimap && params?.minimap ? (
-        <Image alt="minimap blocker" width={280} height={279} src="/images/minimap_full.png" />
-      ) : null}
-      {showPickerOverlay && params?.picks ? (
-        <Image alt="minimap blocker" width={3840} height={2160} src="/images/picker-overlay.png" />
-      ) : null}
+      {isMinimapBlocked && (
+        <div className="absolute bottom-0 left-0">
+          <Image
+            alt="minimap blocker"
+            width={244}
+            height={244}
+            src="/images/731-Complex-Large-AntiStreamSnipeMap.png"
+          />
+        </div>
+      )}
+
+      {isPicksBlocked && (
+        <Image alt="picks blocker" width={3840} height={2160} src="/images/picker-overlay.png" />
+      )}
     </div>
   )
 }

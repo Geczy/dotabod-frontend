@@ -34,13 +34,11 @@ export default async function DashboardPage() {
     redirect(authOptions.pages.signIn)
   }
 
-  const posts = await getPostsForUser(user.id)
+  const posts = []
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="Posts" text="Create and manage posts.">
-        <PostCreateButton />
-      </DashboardHeader>
+      <DashboardHeader heading="General" text="Random items for your stream." />
       <div>
         {posts?.length ? (
           <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
