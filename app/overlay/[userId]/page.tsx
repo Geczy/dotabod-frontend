@@ -3,11 +3,16 @@
 import io from "socket.io-client"
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { useSearchParams } from "next/navigation"
 
 let socket
-export default function OverlayPage({ params, searchParams }) {
-  const [gameState, setGameState] = useState("")
+export default function OverlayPage({ params }) {
+  const [gameState, setGameState] = useState("DISCONNECTED")
+
+  const minimapStates = ["DOTA_GAMERULES_STATE_GAME_IN_PROGRESS", "DOTA_GAMERULES_STATE_PRE_GAME"]
+  const isMinimapBlocked = minimapStates.includes(gameState)
+
+  const pickSates = ["DOTA_GAMERULES_STATE_HERO_SELECTION", "DOTA_GAMERULES_STATE_STRATEGY_TIME"]
+  const isPicksBlocked = pickSates.includes(gameState)
 
   useEffect(() => {
     if (!params?.userId) return
@@ -25,6 +30,18 @@ export default function OverlayPage({ params, searchParams }) {
   }, [params?.userId])
 
   useEffect(() => {
+    if (typeof window !== "object" || !window?.obsstudio) return
+
+    if (isPicksBlocked) {
+      window.obsstudio.setCurrentScene("[dotabod] out of game")
+    } else if (isMinimapBlocked) {
+      window.obsstudio.setCurrentScene("[dotabod] in game")
+    } else {
+      window.obsstudio.setCurrentScene("[dotabod] out of game")
+    }
+  }, [gameState, isMinimapBlocked, isPicksBlocked])
+
+  useEffect(() => {
     return () => {
       socket?.off("state")
       socket?.off("map:game_state")
@@ -33,12 +50,6 @@ export default function OverlayPage({ params, searchParams }) {
       socket?.disconnect()
     }
   }, [])
-
-  const minimapStates = ["DOTA_GAMERULES_STATE_GAME_IN_PROGRESS", "DOTA_GAMERULES_STATE_PRE_GAME"]
-  const isMinimapBlocked = minimapStates.includes(gameState) && params?.type === "minimap"
-
-  const pickSates = ["DOTA_GAMERULES_STATE_HERO_SELECTION", "DOTA_GAMERULES_STATE_STRATEGY_TIME"]
-  const isPicksBlocked = pickSates.includes(gameState) && params?.type === "picks"
 
   return (
     <div>
