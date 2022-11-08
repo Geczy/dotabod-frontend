@@ -71,7 +71,12 @@ function PicksCard() {
         </Card.Description>
       </Card.Header>
       <Card.Content>
-        <Image alt="picks blocker" width={1920} height={1080} src="/images/picker-overlay.png" />
+        <Image
+          alt="picks blocker"
+          width={1920}
+          height={1080}
+          src="/images/block-radiant-picks.png"
+        />
       </Card.Content>
       <Card.Footer>Enable | Disable</Card.Footer>
     </Card>
