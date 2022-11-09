@@ -20,7 +20,7 @@ export const navigationItems: NavigationItem[] = [
     icon: Icons.post,
   },
   {
-    title: "Options",
+    title: "Features",
     href: "/dashboard/settings",
     icon: Icons.settings,
   },

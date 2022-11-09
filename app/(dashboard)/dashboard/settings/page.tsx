@@ -20,7 +20,7 @@ export default async function SettingsPage() {
     <DashboardShell>
       <DashboardHeader heading="Settings" text="Manage account and website settings." />
       <div className="grid gap-10 mb-11">
-        <UserNameForm user={{ id: user?.id, name: user?.name }} />
+        {/* <UserNameForm user={{ id: user?.id, name: user?.name }} /> */}
         <SceneSwitcher />
         <MinimapCard />
         <PicksCard />
