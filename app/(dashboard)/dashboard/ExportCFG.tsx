@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/ui/card"
-import { Snippet } from "@geist-ui/core"
+import { Button, Link, Snippet } from "@geist-ui/core"
 import { Code } from "@mantine/core"
 
 export function ExportCFG({ user }) {
@@ -50,13 +50,11 @@ export function ExportCFG({ user }) {
         </div>
       </Card.Content>
       <Card.Footer>
-        <a
-          className="relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-normal text-white hover:bg-brand-400 disabled:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-          href={url}
-          download={`gamestate_integration_dotabod-${user.name}.cfg`}
-        >
-          Download gamestate_integration.cfg
-        </a>
+        <Link href={url} download={`gamestate_integration_dotabod-${user.name}.cfg`}>
+          <Button type="secondary" className="!normal-case">
+            Download gamestate_integration.cfg
+          </Button>
+        </Link>
       </Card.Footer>
     </Card>
   )
