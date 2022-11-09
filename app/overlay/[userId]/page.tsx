@@ -67,7 +67,7 @@ export default function OverlayPage({ params }) {
             alt="minimap blocker"
             width={244}
             height={244}
-            src="/images/731-Complex-Large-AntiStreamSnipeMap.png"
+            src="/images/731-Simple-Large-AntiStreamSnipeMap.png"
           />
         </div>
       )}
