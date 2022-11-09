@@ -34,13 +34,13 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             </Link>
           </DropdownMenu.Item>
           <DropdownMenu.Item>
-            <Link href="/dashboard/settings" className="w-full">
-              Settings
+            <Link href="/dashboard/features" className="w-full">
+              Features
             </Link>
           </DropdownMenu.Item>
           <DropdownMenu.Separator />
           <DropdownMenu.Item>
-            <Link href="https://github.com/shadcn/taxonomy" className="w-full" target="_blank">
+            <Link href="https://github.com/dotabod/" className="w-full" target="_blank">
               GitHub
             </Link>
           </DropdownMenu.Item>

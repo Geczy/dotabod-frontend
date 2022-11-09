@@ -9,7 +9,7 @@ import { SceneSwitcher } from "./SceneSwitcher"
 import { MinimapCard } from "./MinimapCard"
 import { PicksCard } from "./PicksCard"
 
-export default async function SettingsPage() {
+export default async function FeaturesPage() {
   const user = await getCurrentUser()
 
   if (!user) {
@@ -18,7 +18,10 @@ export default async function SettingsPage() {
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="Settings" text="Manage account and website settings." />
+      <DashboardHeader
+        heading="Features"
+        text="Manage popular streamer features for your Dota game."
+      />
       <div className="grid gap-10 mb-11">
         {/* <UserNameForm user={{ id: user?.id, name: user?.name }} /> */}
         <SceneSwitcher />

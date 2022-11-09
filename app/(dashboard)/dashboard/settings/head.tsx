@@ -1,7 +1,7 @@
 export default async function Head({ params }) {
   return (
     <>
-      <title>Dotabod | Settings</title>
+      <title>Dotabod | Features</title>
     </>
   )
 }

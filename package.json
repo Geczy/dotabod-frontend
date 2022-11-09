@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "author": {
-    "name": "shadcn",
-    "url": "https://twitter.com/shadcn"
+    "name": "dotabod",
+    "url": "https://dotabod.vercel.app/"
   },
   "scripts": {
     "dev": "next dev -p 3001",
