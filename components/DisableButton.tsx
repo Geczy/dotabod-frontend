@@ -1,7 +1,8 @@
 "use client"
 
-import { cn } from "@/lib/utils"
+import { Button } from "@geist-ui/core"
 import { Tooltip } from "@mantine/core"
+import { Power } from "lucide-react"
 
 export const DisableButton = () => (
   <Tooltip
@@ -11,8 +12,8 @@ export const DisableButton = () => (
     withArrow
     position="right"
   >
-    <button className="relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-normal text-white hover:bg-brand-400 disabled:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
+    <Button icon={<Power />} type="secondary">
       Turn off
-    </button>
+    </Button>
   </Tooltip>
 )

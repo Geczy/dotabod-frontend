@@ -1,6 +1,7 @@
 "use client"
 
 import { Card } from "@/ui/card"
+import { Snippet } from "@geist-ui/core"
 import { Code } from "@mantine/core"
 
 export function ExportCFG({ user }) {
@@ -36,18 +37,16 @@ export function ExportCFG({ user }) {
     <Card>
       <Card.Header>
         <Card.Title>Dota GSI File</Card.Title>
-        <Card.Description className="space-y-2">
-          This enables Dotabod to see your games
-        </Card.Description>
+        <Card.Description>This enables Dotabod to see your games.</Card.Description>
       </Card.Header>
       <Card.Content>
         <div className="space-y-2">
-          Place in{" "}
-          <Code>
+          <div>Restart your Dota 2 client after saving the file.</div>
+
+          <Snippet symbol="" width="750px">
             C:\Program Files (x86)\Steam\steamapps\common\dota 2
             beta\game\dota\cfg\gamestate_integration\
-          </Code>
-          <div>Restart your Dota 2 client after saving the file.</div>
+          </Snippet>
         </div>
       </Card.Content>
       <Card.Footer>

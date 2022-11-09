@@ -16,7 +16,7 @@ Card.Header = function CardHeader({ className, ...props }: CardHeaderProps) {
 interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 Card.Content = function CardContent({ className, ...props }: CardContentProps) {
-  return <div className={cn("px-6 pb-4", className)} {...props} />
+  return <div className={cn("px-6 pb-4 text-sm text-gray-700", className)} {...props} />
 }
 
 interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
