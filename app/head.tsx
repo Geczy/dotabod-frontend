@@ -6,7 +6,7 @@ export default function Head() {
       <meta name="viewport" content="width=device-width" />
       <meta
         name="description"
-        content="An open source application built using the new router, server components and everything new in Next.js 13."
+        content="For streamers, a Dota 2 app to manage your OBS scenes, auto block minimap wards, and auto block hero's during picking phase."
       />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://dotabod.vercel.app" />
