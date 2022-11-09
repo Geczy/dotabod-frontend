@@ -1,12 +1,13 @@
 "use client"
 import { Card } from "@/ui/card"
-import { cn, getBaseUrl } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { CopyButton, Tooltip } from "@mantine/core"
 import { IconCopy, IconCheck } from "@tabler/icons"
 import Image from "next/image"
+import { useBaseUrl } from "@/lib/hooks"
 
 export function OverlayURL({ user }) {
-  const copyURL = getBaseUrl(`overlay/${user?.id}`)
+  const copyURL = useBaseUrl(`overlay/${user?.id}`)
 
   return (
     <Card>

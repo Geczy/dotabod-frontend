@@ -13,8 +13,3 @@ export function formatDate(input: string): string {
     year: "numeric",
   })
 }
-
-export const getBaseUrl = (append?: string) => {
-  const base = window.location.protocol + "//" + window.location.host
-  return append ? `${base}/${append}` : base
-}
