@@ -17,10 +17,7 @@ export default function IndexPage() {
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
           <span className="block xl:inline">Dotabod</span>
         </h1>
-        <p className="mx-auto mt-3 max-w-md text-base text-gray-500 sm:text-lg md:mt-5 md:max-w-3xl md:text-xl">
-          For streamers! Automatic minimap ward blocker, automatic picks blocker, and more features
-          coming soon.
-        </p>
+        <div>For streamers!</div>
         <div className="mx-auto mt-5 max-w-md sm:flex sm:justify-center md:mt-8">
           <div className="rounded-md shadow">
             <Link
@@ -30,6 +27,26 @@ export default function IndexPage() {
               Try the beta
             </Link>
           </div>
+        </div>
+        <div className="text-left mx-auto mt-3 max-w-md text-base text-gray-500 sm:text-lg md:mt-5 md:max-w-3xl md:text-xl">
+          Current features:
+          <ul>
+            <li>- auto minimap ward blocker</li>
+            <li>- auto picks phase blocker</li>
+            <li>- auto OBS scene switch on game start and game end</li>
+          </ul>
+        </div>
+        <div className="text-left mx-auto mt-3 max-w-md text-base text-gray-500 sm:text-lg md:mt-5 md:max-w-3xl md:text-xl">
+          Coming soon:
+          <ul>
+            <li>- auto mmr tracker with chat command !mmr</li>
+            <li>
+              - auto twitch prediction start & stop on W/L, or on random game events like "will
+              streamer die by min 3", "will streamer tp top after spawning" etc
+            </li>
+            <li>- chat bot to say PauseChamp when game is paused</li>
+            <li>- have a feature request? lmk :)</li>
+          </ul>
         </div>
       </div>
     </>
