@@ -45,7 +45,7 @@ export function SceneSwitcher(): JSX.Element {
         </Display>
       </Card.Content>
       <Card.Footer>
-        <DisableButton />
+        <DisableButton tooltip="To turn this feature off, don't name the OBS scenes to the ones in the instructions." />
       </Card.Footer>
     </Card>
   )
