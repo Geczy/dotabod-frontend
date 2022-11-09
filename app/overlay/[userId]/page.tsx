@@ -30,7 +30,7 @@ export default function OverlayPage({ params }) {
       auth: { token: params?.userId },
     })
 
-    // socket.on("state", setGameState)
+    socket.on("state", setGameState)
     socket.on("map:game_state", setGameState)
     socket.on("player:team_name", setTeamName)
 
@@ -51,7 +51,7 @@ export default function OverlayPage({ params }) {
 
   useEffect(() => {
     return () => {
-      // socket?.off("state")
+      socket?.off("state")
       socket?.off("map:game_state")
       socket?.off("player:team_name")
       socket?.off("connect_error")
