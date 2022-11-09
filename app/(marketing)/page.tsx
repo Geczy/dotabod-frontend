@@ -18,29 +18,20 @@ export default function IndexPage() {
           <span className="block xl:inline">Dotabod</span>
         </h1>
         <p className="mx-auto mt-3 max-w-md text-base text-gray-500 sm:text-lg md:mt-5 md:max-w-3xl md:text-xl">
-          Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
-          Elit sunt amet fugiat veniam occaecat fugiat aliqua.
+          For streamers! Automatic minimap ward blocker, automatic picks blocker, and more features
+          coming soon.
         </p>
         <div className="mx-auto mt-5 max-w-md sm:flex sm:justify-center md:mt-8">
           <div className="rounded-md shadow">
-            <a
-              href="#"
+            <Link
+              href="/login"
               className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg"
             >
-              Get started
-            </a>
-          </div>
-          <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-            <a
-              href="#"
-              className="flex w-full items-center justify-center rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-indigo-600 hover:bg-gray-50 md:py-4 md:px-10 md:text-lg"
-            >
-              Live demo
-            </a>
+              Try the beta
+            </Link>
           </div>
         </div>
       </div>
-      <Features />
     </>
   )
 }
@@ -131,12 +122,12 @@ function Features() {
                   sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.
                 </p>
                 <div className="mt-6">
-                  <a
-                    href="#"
+                  <Link
+                    href="/login"
                     className="inline-flex rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
                     Get started
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
