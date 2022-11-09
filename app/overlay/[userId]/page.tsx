@@ -43,11 +43,13 @@ export default function OverlayPage({ params }) {
     if (typeof window !== "object" || !window?.obsstudio) return
 
     if (isMinimapBlocked) {
-      window.obsstudio.setCurrentScene("[dotabod] playing")
+      window.obsstudio.setCurrentScene("[dotabod] blocking minimap")
+    } else if (isPicksBlocked) {
+      window.obsstudio.setCurrentScene("[dotabod] blocking picks")
     } else {
-      window.obsstudio.setCurrentScene("[dotabod] disconnected")
+      window.obsstudio.setCurrentScene("[dotabod] not blocking")
     }
-  }, [gameState, isMinimapBlocked, isPicksBlocked])
+  }, [isMinimapBlocked, isPicksBlocked])
 
   useEffect(() => {
     return () => {

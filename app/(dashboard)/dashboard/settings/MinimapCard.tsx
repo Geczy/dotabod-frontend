@@ -13,13 +13,19 @@ export function MinimapCard(): JSX.Element {
           positions. This overlay will make it confusing to see where the true wards are.
         </Card.Description>
       </Card.Header>
-      <Card.Content>
+      <Card.Content className="flex items-center space-x-6">
         <Image
           alt="minimap blocker"
           width={244}
           height={244}
-          src="/images/731-Complex-Large-AntiStreamSnipeMap.png"
+          src="/images/731-Simple-Large-AntiStreamSnipeMap.png"
         />
+        {/* <Image
+          alt="minimap blocker"
+          width={244}
+          height={244}
+          src="/images/731-Complex-Large-AntiStreamSnipeMap.png"
+        /> */}
       </Card.Content>
       <Card.Footer>
         <button
